@@ -49,21 +49,61 @@ public class GUI {
                 System.out.println("r" + row + ",c" + col + " " + (b == gb) + " " + (b.equals(gb)));
                 updatedisplay();
 
-                RandomPlace();
+                //                RandomPlace();
             }
 
         });
         return b;
     }
 
-    public int[] RandomPlace(){
+    public Vector GeneratedNumbers = new Vector<int[]>();
+
+    public Vector RandomPlace() {
         Random randomGenerator = new Random();
-        int[] randompoz = {4+randomGenerator.nextInt(7),randomGenerator.nextInt(15)};
-        System.out.println(""+randompoz[0]+" , "+randompoz[1]);
-        return randompoz;        
+        Vector randompoz = new Vector();
+        randompoz.clear();
+        int x = 4 + randomGenerator.nextInt(7);
+        int y = randomGenerator.nextInt(15);
+
+        randompoz.add(x);
+        randompoz.add(y);
+
+        while (GeneratedNumbers.contains(randompoz)) {
+            //  System.out.println(randompoz + "DEJA PRESENT!");
+            randompoz.clear();
+            x = 4 + randomGenerator.nextInt(7);
+            y = randomGenerator.nextInt(15);
+
+            randompoz.add(x);
+            randompoz.add(y);
+        }
+
+        //System.out.println("NUMBER GENERATED" + randompoz.get(0) + " , " + randompoz.get(1));
+        //System.out.println("LIST OF COORDINATES:");
+        //printvector(GeneratedNumbers);
+
+        GeneratedNumbers.add(randompoz);
+        return randompoz;
     }
 
-    private JPanel createGridPanel() {
+    public static void printvector(Vector vecteur) {
+        Enumeration vEnum = vecteur.elements();
+
+        while (vEnum.hasMoreElements())
+            System.out.print(vEnum.nextElement() + " ");
+    }
+
+    public void metabolite() {
+        //     for (int i = 0; i < 40; i++) {
+        //         Vector coordinate=RandomPlace();
+        //         int x = coordinate.get(0);
+        //         int y = coordinate.get(1);   
+        //     }
+
+    }
+
+    
+    public JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
         for (int i = 0; i < N * N; i++) {
             int row = i / N;
@@ -77,6 +117,7 @@ public class GUI {
 
     public void updatedisplay() {
         f.getContentPane().removeAll();
+        list.clear();
         display();
     }
 
