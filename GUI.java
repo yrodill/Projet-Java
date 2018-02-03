@@ -30,17 +30,20 @@ public class GUI {
     private JButton createGridButton(final int row, final int col) {
         final JButton b;
 
-        if ((row == 0 || row == 14) && (col % 2 == 1)) {
-            b = new JButton("E");
-        } else if ((Arrays.asList(1, 13).contains(row) && Arrays.asList(2, 4, 6, 8, 10, 12).contains(col))
-                || (Arrays.asList(2, 12).contains(row) && Arrays.asList(1, 3, 5, 7, 9, 11, 13).contains(col))
-                || (row == 3 && Arrays.asList(0, 2, 4, 6, 8, 10, 12).contains(col))
-                || (row == 11 && Arrays.asList(2, 4, 6, 8, 10, 12, 14).contains(col))) {
-            b = new JButton("L");
-        } else {
-            b = new JButton(" ");
-        }
-
+        int index = (row * 10 + col);
+        String type=Plateau.plateau.get(index).get_type();
+        b = new JButton(type);
+        // if ((row == 0 || row == 14) && (col % 2 == 1)) {
+        //     b = new JButton("E");
+        // } else if ((Arrays.asList(1, 13).contains(row) && Arrays.asList(2, 4, 6, 8, 10, 12).contains(col))
+        //         || (Arrays.asList(2, 12).contains(row) && Arrays.asList(1, 3, 5, 7, 9, 11, 13).contains(col))
+        //         || (row == 3 && Arrays.asList(0, 2, 4, 6, 8, 10, 12).contains(col))
+        //         || (row == 11 && Arrays.asList(2, 4, 6, 8, 10, 12, 14).contains(col))) {
+        //     b = new JButton("L");
+        // } else {
+        //     b = new JButton(" ");
+        // }
+        
         b.addActionListener(new ActionListener() {
 
             @Override
@@ -142,6 +145,7 @@ public class GUI {
         EventQueue.invokeLater(new Runnable() {
 
             public void run() {
+                Plateau.set_element();
                 new GUI().display();
             }
         });

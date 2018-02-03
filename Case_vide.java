@@ -3,6 +3,6 @@ public class Case_vide extends Case {
         super(coord_x, coord_y);
     }
     public String get_type() {
-        return("Vide");
+        return(" ");
     }
 }
