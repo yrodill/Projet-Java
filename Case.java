@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.*;
 
-public class Piece {
-    public Vector Pion_piece = new Vector();
+public class Case {
+    public Vector Pion_Case = new Vector();
     private int x;
     private int y;
 
@@ -21,12 +21,15 @@ public class Piece {
         return coordinate;
     }
 
-    public Piece(int coord_x, int coord_y) {
+    public Case(int coord_x, int coord_y) {
         x = coord_x;
         y = coord_y;
     }
 
-    // public Piece(int coord_x, int coord_y, String type) {
+    public void affiche(){
+        System.out.println("X:"+x+", Y: "+y);
+    }
+    // public Case(int coord_x, int coord_y, String type) {
     //     x = coord_x;
     //     y = coord_y;
     //     type="default";

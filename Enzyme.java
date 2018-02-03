@@ -1,4 +1,4 @@
-public class Enzyme extends Piece{
+public class Enzyme extends Case{
     public Enzyme(int coord_x, int coord_y) {
         super(coord_x, coord_y);
     }
