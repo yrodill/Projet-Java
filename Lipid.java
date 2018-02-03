@@ -3,4 +3,8 @@ public class Lipid extends Case {
         super(coord_x, coord_y);
     }
     
+    public String get_type() {
+        return("Lipid");
+    }
+    
 }

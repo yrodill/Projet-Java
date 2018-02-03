@@ -35,4 +35,8 @@ public class Case {
     //     type="default";
     // }
 
+    public String get_type() {
+        return("Default");
+    }
+
 }

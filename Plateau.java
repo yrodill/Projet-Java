@@ -12,7 +12,7 @@ public class Plateau {
         for (int row = 0; row < 15; row++) {
             for (int col = 0; col < 15; col++) {
                 int index = (row * 10 + col);
-                System.out.println(index);
+                //System.out.println(index);
                 if ((row == 0 || row == 14) && (col % 2 == 1)) {
                     Case enzyme = new Enzyme(row, col);
                     plateau.add(index, enzyme);
@@ -25,8 +25,8 @@ public class Plateau {
                     plateau.add(index, lipid);
                 }
                 else{
-                    //case vide=new case(row,col);
-                    plateau.add(index,null);
+                    Case vide=new Case_vide(row,col);
+                    plateau.add(index,vide);
                 }
             }
         }
@@ -36,7 +36,8 @@ public class Plateau {
        set_element();
         for(int i=0; i<plateau.size();i++){
             Vector ext_case=plateau.get(i).get_coordinate();
-            System.out.println(ext_case);
+            String type=plateau.get(i).get_type();
+            System.out.println(type);
         }
     }
 
