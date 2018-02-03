@@ -41,12 +41,22 @@ public class GUI {
         Boolean highlighted = pieceaposer.is_highlighted();
         Boolean reachable = pieceaposer.is_reachable();
         b = new JButton(type);
+        if (index%2==0){
+            b.setBackground(Color.WHITE);
+            b.setForeground(Color.BLACK);
+            b.setOpaque(true);
+        }
+        if (index%2==1){
+            b.setBackground(Color.BLACK);
+            b.setForeground(Color.WHITE);            
+            b.setOpaque(true);
+        }
         if (highlighted) {
             b.setBackground(Color.GREEN);
             b.setOpaque(true);
         }
         if (reachable) {
-            b.setBackground(Color.RED);
+            b.setBackground(Color.ORANGE);
             b.setOpaque(true);
         }
         b.addActionListener(new ActionListener() {
@@ -66,6 +76,7 @@ public class GUI {
                 }
                 if (click == 2) {
                     clicked.highlight(false);
+                    unreachable();
                     target = Plateau.plateau.get(index);
                     Plateau.plateau.set(index, clicked);
                     int old_row = clicked.get_row();
@@ -87,16 +98,23 @@ public class GUI {
             System.out.println(row + "," + col);
             for (int i = 1; i <= 3; i++) {
                 int possible_case = row + i;
-                int index=possible_case*10+col;
-                System.out.println(Plateau.plateau.get(index).get_type());
-                if (Plateau.plateau.get(index).get_type().equals("")) {
-                    System.out.println("VIDEUHHH");
-
+                int index=possible_case*15+col;
+                String type=Plateau.plateau.get(index).get_type();
+                if (type.equals(" ")) {
                     Plateau.plateau.get(index).set_reachable(true);
+                }
+                else{
+                    return;
                 }
             }
         }
     }
+
+    public void unreachable() {
+        for (int i = 0; i < Plateau.plateau.size(); i++) {
+            Plateau.plateau.get(i).set_reachable(false);
+    }
+}
 
     public Vector GeneratedNumbers = new Vector<int[]>();
 

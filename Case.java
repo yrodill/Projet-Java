@@ -46,7 +46,7 @@ public class Case {
     // }
 
     public String get_type() {
-        return ("");
+        return (" ");
     }
 
     public void highlight(boolean trueorfalse) {
