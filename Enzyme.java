@@ -4,6 +4,6 @@ public class Enzyme extends Case{
     }
 
     public String get_type() {
-        return("Enzyme");
+        return("E");
     }
 }
