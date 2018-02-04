@@ -5,8 +5,9 @@ public class Case {
     public Vector Pion_Case = new Vector();
     private int x;
     private int y;
+    private int player;
     private boolean highlighted = false;
-    private boolean reachable = false;    
+    private boolean reachable = false;
 
     public void set_x(int coord_x) {
         x = coord_x;
@@ -14,6 +15,10 @@ public class Case {
 
     public void set_y(int coord_y) {
         y = coord_y;
+    }
+
+    public void set_joueur(int joueur){
+      player = joueur;
     }
 
     public int get_row() {
@@ -24,6 +29,10 @@ public class Case {
         return y;
     }
 
+    public int get_Player(){
+      return player;
+    }
+
     public Vector get_coordinate() {
         Vector coordinate = new Vector();
         coordinate.add(x);
@@ -31,9 +40,10 @@ public class Case {
         return coordinate;
     }
 
-    public Case(int row, int col) {
+    public Case(int row, int col, int joueur) {
         x = row;
         y = col;
+        joueur = 0;
     }
 
     public void affiche() {

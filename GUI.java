@@ -30,8 +30,8 @@ public class GUI {
     public ImageIcon mito = new ImageIcon("./mito_sized.png");
     public ImageIcon lipid = new ImageIcon("./lipid.png");
     public ImageIcon enzyme = new ImageIcon("./enzyme.png");
-    
-    
+
+
 
     private JButton getGridButton(int r, int c) {
         int index = r * N + c;
@@ -86,8 +86,11 @@ public class GUI {
                 System.out.println("r" + row + ",c" + col + " " + (b == gb) + " " + (b.equals(gb)));
 
                 if (click == 1) {
-                    //int index = (row * 15 + col);        
+                    //int index = (row * 15 + col);
+
                     clicked = Plateau.plateau.get(index);
+                    int joueur = clicked.get_Player();
+                    System.out.println("Joueur ="+joueur);
                     clicked.highlight(true);
                     listOfpossibilities(clicked);
                     updatedisplay();
@@ -104,7 +107,9 @@ public class GUI {
                         int old_row = clicked.get_row();
                         int old_col = clicked.get_col();
                         int old_index = (old_row * 15 + old_col);
-                        Case vide = new Case_vide(old_row, old_col);
+                        int joueur = clicked.get_Player();
+                        System.out.println("Joueur ="+joueur);
+                        Case vide = new Case_vide(old_row, old_col,joueur);
 
                         int target_row = target.get_row();
                         int target_col = target.get_col();
@@ -131,7 +136,7 @@ public class GUI {
     }
 
     public void listOfpossibilities(Case selected) {
-        if (selected instanceof Lipid) {
+        if (selected instanceof Lipid && selected.get_Player()==1) {
             int row = selected.get_row();
             int col = selected.get_col();
             //System.out.println(row + "," + col);
@@ -141,12 +146,27 @@ public class GUI {
                 String type = Plateau.plateau.get(index).get_type();
                 if (type.equals(" ")) {
                     Plateau.plateau.get(index).set_reachable(true);
-                } else {
-                    return;
                 }
+              }
             }
-        }
-    }
+         else if (selected instanceof Lipid && selected.get_Player()==2) {
+                int row = selected.get_row();
+                int col = selected.get_col();
+                //System.out.println(row + "," + col);
+                  for (int i = 1; i <= 3; i++) {
+                    int possible_case = row - i;
+                    int index = possible_case*15+col;
+                    String type = Plateau.plateau.get(index).get_type();
+                    if (type.equals(" ")) {
+                        Plateau.plateau.get(index).set_reachable(true);
+                    }
+                  }
+                } else {
+                        return;
+                    }
+
+            }
+
 
     public void unreachable() {
         for (int i = 0; i < Plateau.plateau.size(); i++) {
@@ -185,8 +205,8 @@ public class GUI {
         f.add(createGridPanel());
         f.pack();
         //ImageIcon imageIcon = new ImageIcon("./background.jpg"); // load the image to a imageIcon
-        //Image image = imageIcon.getImage(); // transform it 
-        //Image newimg = image.getScaledInstance(800, 800,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        //Image image = imageIcon.getImage(); // transform it
+        //Image newimg = image.getScaledInstance(800, 800,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         //imageIcon = new ImageIcon(newimg);
         //JLabel background = new JLabel(imageIcon);
         //f.add(background);
