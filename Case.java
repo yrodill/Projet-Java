@@ -63,4 +63,10 @@ public class Case {
     public boolean is_reachable() {
         return reachable;
     }
+    public boolean is_thesameposition(Case tested) {
+        if(tested.get_row()==x && tested.get_col()==y){
+            return true;
+        }
+        return false;
+    }
 }

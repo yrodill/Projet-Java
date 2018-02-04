@@ -41,14 +41,14 @@ public class GUI {
         Boolean reachable = pieceaposer.is_reachable();
 
         b = new JButton(type);
-        if (index%2==0){
+        if (index % 2 == 0) {
             b.setBackground(Color.WHITE);
             b.setForeground(Color.BLACK);
             b.setOpaque(true);
         }
-        if (index%2==1){
-            b.setBackground(Color.BLACK);            
-            b.setForeground(Color.WHITE);            
+        if (index % 2 == 1) {
+            b.setBackground(Color.BLACK);
+            b.setForeground(Color.WHITE);
             b.setOpaque(true);
         }
         if (highlighted) {
@@ -75,25 +75,38 @@ public class GUI {
                     updatedisplay();
                 }
                 if (click == 2) {
-                    int old_row = clicked.get_row();
-                    int old_col = clicked.get_col();
-                    int old_index = (old_row * 15 + old_col);
-                    Case vide=new Case_vide(old_row,old_col);
+                    Case target = Plateau.plateau.get(index);
+                    System.out.println("Atteignable: " + target.is_reachable());
                     
-                    Case target= Plateau.plateau.get(index);
-                    int target_row=target.get_row();
-                    int target_col=target.get_col();
-                    int new_index=(target_row*15+target_col);
-                    
-                    clicked.set_x(target_row);
-                    clicked.set_y(target_col);
-                    Plateau.plateau.set(new_index, clicked);
-                    Plateau.plateau.set(old_index, vide);
+                    if (target.is_thesameposition(clicked)){
+                        clicked.highlight(false);
+                        unreachable();
+                        click = 0;
+                    }
+                    else if (target.is_reachable()) {
+                        int old_row = clicked.get_row();
+                        int old_col = clicked.get_col();
+                        int old_index = (old_row * 15 + old_col);
+                        Case vide = new Case_vide(old_row, old_col);
 
-                    clicked.highlight(false);
-                    unreachable();
+                        int target_row = target.get_row();
+                        int target_col = target.get_col();
+                        int new_index = (target_row * 15 + target_col);
+
+                        clicked.set_x(target_row);
+                        clicked.set_y(target_col);
+                        Plateau.plateau.set(new_index, clicked);
+                        Plateau.plateau.set(old_index, vide);
+
+                        clicked.highlight(false);
+                        unreachable();
+                        click = 0;
+                    }else {
+                        System.out.println("Case inaccessible!");
+                        click = 1;
+                    }
+
                     updatedisplay();
-                    click = 0;
                 }
             }
         });
@@ -104,7 +117,7 @@ public class GUI {
         if (selected instanceof Lipid) {
             int row = selected.get_row();
             int col = selected.get_col();
-            System.out.println(row + "," + col);
+            //System.out.println(row + "," + col);
             for (int i = 1; i <= 3; i++) {
                 int possible_case = row + i;
                 int index = possible_case * 15 + col;
@@ -177,9 +190,9 @@ public class GUI {
         f.getContentPane().removeAll();
         list.clear();
         display();
-        for (int i = 0; i < Plateau.plateau.size(); i++) {
-            Plateau.plateau.get(i).affiche();
-        }
+        // for (int i = 0; i < Plateau.plateau.size(); i++) {
+        //     Plateau.plateau.get(i).affiche();
+        // }
     }
 
     JFrame f = new JFrame("GridButton");
