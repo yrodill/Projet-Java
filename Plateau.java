@@ -35,7 +35,7 @@ public class Plateau {
         //printvector(GeneratedNumbers);
 
         GeneratedNumbers.addElement(randompoz);
-        System.out.println(randompoz);
+        //System.out.println(randompoz);
         return randompoz;
     }
 
