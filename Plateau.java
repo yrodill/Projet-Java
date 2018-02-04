@@ -8,6 +8,47 @@ public class Plateau {
         plateau = nom;
     }
 
+    public static Vector GeneratedNumbers = new Vector<Vector>();
+    
+    public static Vector<Integer> RandomPlace() {
+        Vector<Integer> randompoz = new Vector();
+        randompoz.clear();
+        Random randomGenerator = new Random();
+        Integer x = 4 + randomGenerator.nextInt(7);
+        Integer y = randomGenerator.nextInt(15);
+
+        randompoz.addElement(x);
+        randompoz.addElement(y);
+
+        while (GeneratedNumbers.contains(randompoz)) {
+            //  System.out.println(randompoz + "DEJA PRESENT!");
+            randompoz.clear();
+            x = 4 + randomGenerator.nextInt(7);
+            y = randomGenerator.nextInt(15);
+
+            randompoz.addElement(x);
+            randompoz.addElement(y);
+        }
+
+        //System.out.println("NUMBER GENERATED" + randompoz.get(0) + " , " + randompoz.get(1));
+        //System.out.println("LIST OF COORDINATES:");
+        //printvector(GeneratedNumbers);
+
+        GeneratedNumbers.addElement(randompoz);
+        System.out.println(randompoz);
+        return randompoz;
+    }
+
+    public static void printvector(Vector vecteur) {
+        Enumeration vEnum = vecteur.elements();
+
+        while (vEnum.hasMoreElements())
+            System.out.print(vEnum.nextElement() + " ");
+    }
+
+
+
+    
     public static void set_element() {
         for (int row = 0; row < 15; row++) {
             for (int col = 0; col < 15; col++) {
@@ -29,6 +70,15 @@ public class Plateau {
                     plateau.add(index,vide);
                 }
             }
+        }
+        for (int nbmetabolite=0;nbmetabolite<40;nbmetabolite++){
+            Vector<Integer> randomcoord= new Vector();
+            randomcoord=RandomPlace();
+            Integer new_row= randomcoord.get(0);
+            Integer new_col= randomcoord.get(1);
+            int index= new_row*15+new_col;
+            Case metabolite=new Metabolite(new_row, new_col);
+            plateau.set(index, metabolite);
         }
     }
 

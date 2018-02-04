@@ -51,6 +51,10 @@ public class GUI {
             b.setForeground(Color.WHITE);
             b.setOpaque(true);
         }
+        if (type.equals("M")) {
+            b.setForeground(Color.BLUE);
+            b.setOpaque(true);
+        }
         if (highlighted) {
             b.setBackground(Color.GREEN);
             b.setOpaque(true);
@@ -137,42 +141,7 @@ public class GUI {
         }
     }
 
-    public Vector GeneratedNumbers = new Vector<int[]>();
-
-    public Vector RandomPlace() {
-        Random randomGenerator = new Random();
-        Vector randompoz = new Vector();
-        randompoz.clear();
-        int x = 4 + randomGenerator.nextInt(7);
-        int y = randomGenerator.nextInt(15);
-
-        randompoz.add(x);
-        randompoz.add(y);
-
-        while (GeneratedNumbers.contains(randompoz)) {
-            //  System.out.println(randompoz + "DEJA PRESENT!");
-            randompoz.clear();
-            x = 4 + randomGenerator.nextInt(7);
-            y = randomGenerator.nextInt(15);
-
-            randompoz.add(x);
-            randompoz.add(y);
-        }
-
-        //System.out.println("NUMBER GENERATED" + randompoz.get(0) + " , " + randompoz.get(1));
-        //System.out.println("LIST OF COORDINATES:");
-        //printvector(GeneratedNumbers);
-
-        GeneratedNumbers.add(randompoz);
-        return randompoz;
-    }
-
-    public static void printvector(Vector vecteur) {
-        Enumeration vEnum = vecteur.elements();
-
-        while (vEnum.hasMoreElements())
-            System.out.print(vEnum.nextElement() + " ");
-    }
+  
 
     public JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
