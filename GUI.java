@@ -47,7 +47,7 @@ public class GUI {
             b.setOpaque(true);
         }
         if (index%2==1){
-            b.setBackground(Color.BLACK);
+            
             b.setForeground(Color.WHITE);            
             b.setOpaque(true);
         }
