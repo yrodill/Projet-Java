@@ -25,7 +25,6 @@ public class GUI {
     private final List<JButton> list = new ArrayList<JButton>();
     public int click = 0;
     public Case clicked;
-    public Case target;
 
     private JButton getGridButton(int r, int c) {
         int index = r * N + c;
@@ -40,6 +39,7 @@ public class GUI {
         String type = pieceaposer.get_type();
         Boolean highlighted = pieceaposer.is_highlighted();
         Boolean reachable = pieceaposer.is_reachable();
+
         b = new JButton(type);
         if (index%2==0){
             b.setBackground(Color.WHITE);
@@ -47,7 +47,7 @@ public class GUI {
             b.setOpaque(true);
         }
         if (index%2==1){
-            
+            b.setBackground(Color.BLACK);            
             b.setForeground(Color.WHITE);            
             b.setOpaque(true);
         }
@@ -75,14 +75,23 @@ public class GUI {
                     updatedisplay();
                 }
                 if (click == 2) {
-                    clicked.highlight(false);
-                    unreachable();
-                    target = Plateau.plateau.get(index);
-                    Plateau.plateau.set(index, clicked);
                     int old_row = clicked.get_row();
                     int old_col = clicked.get_col();
                     int old_index = (old_row * 15 + old_col);
-                    Plateau.plateau.set(old_index, target);
+                    Case vide=new Case_vide(old_row,old_col);
+                    
+                    Case target= Plateau.plateau.get(index);
+                    int target_row=target.get_row();
+                    int target_col=target.get_col();
+                    int new_index=(target_row*15+target_col);
+                    
+                    clicked.set_x(target_row);
+                    clicked.set_y(target_col);
+                    Plateau.plateau.set(new_index, clicked);
+                    Plateau.plateau.set(old_index, vide);
+
+                    clicked.highlight(false);
+                    unreachable();
                     updatedisplay();
                     click = 0;
                 }
@@ -98,12 +107,11 @@ public class GUI {
             System.out.println(row + "," + col);
             for (int i = 1; i <= 3; i++) {
                 int possible_case = row + i;
-                int index=possible_case*15+col;
-                String type=Plateau.plateau.get(index).get_type();
+                int index = possible_case * 15 + col;
+                String type = Plateau.plateau.get(index).get_type();
                 if (type.equals(" ")) {
                     Plateau.plateau.get(index).set_reachable(true);
-                }
-                else{
+                } else {
                     return;
                 }
             }
@@ -113,8 +121,8 @@ public class GUI {
     public void unreachable() {
         for (int i = 0; i < Plateau.plateau.size(); i++) {
             Plateau.plateau.get(i).set_reachable(false);
+        }
     }
-}
 
     public Vector GeneratedNumbers = new Vector<int[]>();
 
@@ -169,6 +177,9 @@ public class GUI {
         f.getContentPane().removeAll();
         list.clear();
         display();
+        for (int i = 0; i < Plateau.plateau.size(); i++) {
+            Plateau.plateau.get(i).affiche();
+        }
     }
 
     JFrame f = new JFrame("GridButton");
