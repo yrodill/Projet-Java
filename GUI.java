@@ -65,11 +65,11 @@ public class GUI {
             b.setIcon(lipid);
         }
         if (type.equals("E")) {
-            //b.setBorder(null);          
+            //b.setBorder(null);
             //JLabel picLabel = new JLabel();
-            //picLabel.setIcon(redc); 
+            //picLabel.setIcon(redc);
             //JLabel picIcon = new JLabel();
-            //picIcon.setIcon(enzyme); 
+            //picIcon.setIcon(enzyme);
             //picIcon.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 //
             //b.add(picIcon);
@@ -164,21 +164,53 @@ public class GUI {
                     Plateau.plateau.get(index).set_reachable(false);
                     break;
                 }
+            }}
+            if(selected instanceof Enzyme){
+              int row = selected.get_row();
+              int col = selected.get_col();
+              List<Integer> move_possible_enzyme = new ArrayList<Integer>();
+              int move = row*15-1+col;
+              int move2 = row*15+1+col;
+              int move3 = (row-1)*15+col;
+              int move4 = (row-1)*15+col-1;
+              int move5 = (row-1)*15+col+1;
+              int move6 = (row+1)*15+col;
+              int move7 = (row+1)*15+col-1;
+              int move8 = (row+1)*15+col+1;
+              if(move >=0 && move < 225){
+                move_possible_enzyme.add(move);
+              }
+              if(move2 >=0 && move2 < 225){
+              }
+              move_possible_enzyme.add(move2);
+              if(move3 >=0 && move3 < 225){
+                move_possible_enzyme.add(move3);
+              }
+              if(move4 >=0 && move4 < 225){
+                move_possible_enzyme.add(move4);
+              }
+              if(move5 >=0 && move5 < 225){
+                move_possible_enzyme.add(move5);
+              }
+              if(move6 >=0 && move6 < 225){
+                move_possible_enzyme.add(move6);
+              }
+              if(move7 >=0 && move7 < 225){
+                move_possible_enzyme.add(move7);
+              }
+              if(move8 >=0 && move8 < 225){
+                move_possible_enzyme.add(move8);
+              }
+
+              for(int j=0;j<move_possible_enzyme.size();j++){
+                String type = Plateau.plateau.get(move_possible_enzyme.get(j)).get_type();
+                if((move_possible_enzyme.get(j)>=0 && move_possible_enzyme.get(j)<=225) && (type.equals(" "))){
+                  Plateau.plateau.get(move_possible_enzyme.get(j)).set_reachable(true);
+                  }
+              }
+
             }
-            // if(selected instanceof Enzyme){
-            //   int row = selected.get_row();
-            //   int col = selected.get_col();
-            //   int[] possible_case = new int[];
-            //   for(int i = 1 ; i<3 ; i++){
-            //     int move = row-i;
-            //     int move2 = row+i;
-            //     possible_case.add(move);
-            //     possible_case.add(move2);
-            //
-            //   }
-            //
-            // }
-        } else {
+          else {
             return;
         }
 
