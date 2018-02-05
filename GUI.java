@@ -136,32 +136,25 @@ public class GUI {
     }
 
     public void listOfpossibilities(Case selected) {
-        if (selected instanceof Lipid && selected.get_Player()==1) {
+        if (selected instanceof Lipid) {
             int row = selected.get_row();
             int col = selected.get_col();
+            int possible_case = 0;
             //System.out.println(row + "," + col);
             for (int i = 1; i <= 3; i++) {
-                int possible_case = row + i;
+                if(selected.get_Player()==1){
+                  possible_case = row + i;
+                }
+                else if(selected.get_Player()==2){
+                  possible_case = row - i;
+                }
                 int index = possible_case * 15 + col;
                 String type = Plateau.plateau.get(index).get_type();
                 if (type.equals(" ")) {
                     Plateau.plateau.get(index).set_reachable(true);
                 }
               }
-            }
-         else if (selected instanceof Lipid && selected.get_Player()==2) {
-                int row = selected.get_row();
-                int col = selected.get_col();
-                //System.out.println(row + "," + col);
-                  for (int i = 1; i <= 3; i++) {
-                    int possible_case = row - i;
-                    int index = possible_case*15+col;
-                    String type = Plateau.plateau.get(index).get_type();
-                    if (type.equals(" ")) {
-                        Plateau.plateau.get(index).set_reachable(true);
-                    }
-                  }
-                } else {
+            } else {
                         return;
                     }
 
