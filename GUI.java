@@ -55,7 +55,7 @@ public class GUI {
             // b.setHorizontalAlignment(SwingConstants.CENTER);
         }
         if (pieceaposer.get_Player()  == 2) {
-            b.setBackground(new Color(145, 187, 255));
+            b.setBackground(new Color(145, 147, 255));
             b.setOpaque(true);
         }
         if (type.equals("M")) {
