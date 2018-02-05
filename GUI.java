@@ -17,6 +17,8 @@ import javax.swing.JColorChooser;
 
 import javax.imageio.ImageIO;
 
+
+
 /**
 * https://stackoverflow.com/questions/7702697/how-to-get-x-and-y-index-of-element-inside-gridlayout
  */
@@ -213,14 +215,48 @@ public class GUI {
     public void display() {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //f.setResizable(false);
-        f.add(createGridPanel());
-        f.pack();
+        //f.add(createGridPanel());
         //ImageIcon imageIcon = new ImageIcon("./background.jpg"); // load the image to a imageIcon
         //Image image = imageIcon.getImage(); // transform it
         //Image newimg = image.getScaledInstance(800, 800,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         //imageIcon = new ImageIcon(newimg);
         //JLabel background = new JLabel(imageIcon);
         //f.add(background);
+        
+        JPanel p2=new JPanel();
+        p2.setLayout(null);
+        p2.setPreferredSize(new Dimension(300,800));
+        JLabel titre = new JLabel();
+        titre.setText("JPlusPlus");
+        titre.setFont(new Font("Serif", Font.PLAIN, 44));
+        titre.setBounds(20, 50, 300, 50);
+        
+        
+        JLabel joueur1 = new JLabel();
+        joueur1.setText("Score joueur 1: ");
+        joueur1.setFont(new Font("Serif", Font.PLAIN, 20));
+        joueur1.setBounds(20, 150, 200, 100);
+
+
+        JLabel joueur2 = new JLabel();
+        joueur2.setText("Score joueur 1: ");
+        joueur2.setFont(new Font("Serif", Font.PLAIN, 20));
+        joueur2.setBounds(20, 250, 200, 100);
+
+
+        p2.add(titre);
+        p2.add(joueur1);
+        p2.add(joueur2);
+
+        JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        sp.setResizeWeight(0.7);
+        sp.setEnabled(false);
+        sp.setDividerSize(10);
+        
+        sp.add(createGridPanel());
+        sp.add(p2);
+        f.add(sp, BorderLayout.CENTER);
+        f.pack();
 
         if (init) {
             f.setLocationRelativeTo(null);
