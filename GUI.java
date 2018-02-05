@@ -13,11 +13,10 @@ import javax.swing.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.JColorChooser;
 
 import javax.imageio.ImageIO;
-
-
 
 /**
 * https://stackoverflow.com/questions/7702697/how-to-get-x-and-y-index-of-element-inside-gridlayout
@@ -29,11 +28,10 @@ public class GUI {
     private final List<JButton> list = new ArrayList<JButton>();
     public int click = 0;
     public Case clicked;
-    public ImageIcon mito = new ImageIcon("./mito_sized.png");
+    public ImageIcon mito = new ImageIcon("./mito_red.png");
     public ImageIcon lipid = new ImageIcon("./lipid.png");
-    public ImageIcon enzyme = new ImageIcon("./enzyme.png");
-
-
+    public ImageIcon enzyme = new ImageIcon("./enzyme_red.png");
+    public ImageIcon redc = new ImageIcon(new ImageIcon("./circlered.png").getImage().getScaledInstance(52, 52, Image.SCALE_DEFAULT));
 
     private JButton getGridButton(int r, int c) {
         int index = r * N + c;
@@ -50,16 +48,14 @@ public class GUI {
 
         b = new JButton();
 
-        if (index % 2 == 0) {
-            // b.setBackground(Color.WHITE);
-            // b.setForeground(Color.BLACK);
-            b.setOpaque(false);
-            b.setContentAreaFilled(false);
-            b.setHorizontalAlignment(SwingConstants.CENTER);
+        if (pieceaposer.get_Player() == 1) {
+            b.setBackground(new Color(110, 186, 29));
+            b.setOpaque(true);
+            // b.setContentAreaFilled(false);
+            // b.setHorizontalAlignment(SwingConstants.CENTER);
         }
-        if (index % 2 == 1) {
-            b.setBackground(Color.BLACK);
-            b.setForeground(Color.WHITE);
+        if (pieceaposer.get_Player()  == 2) {
+            b.setBackground(new Color(145, 187, 255));
             b.setOpaque(true);
         }
         if (type.equals("M")) {
@@ -69,6 +65,15 @@ public class GUI {
             b.setIcon(lipid);
         }
         if (type.equals("E")) {
+            //b.setBorder(null);          
+            //JLabel picLabel = new JLabel();
+            //picLabel.setIcon(redc); 
+            //JLabel picIcon = new JLabel();
+            //picIcon.setIcon(enzyme); 
+            //picIcon.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+//
+            //b.add(picIcon);
+            //b.add(picLabel);
             b.setIcon(enzyme);
         }
         if (highlighted) {
@@ -146,40 +151,38 @@ public class GUI {
             int possible_case = 0;
             //System.out.println(row + "," + col);
             for (int i = 1; i <= 3; i++) {
-                if(selected.get_Player()==1){
-                  possible_case = row + i;
-                }
-                else if(selected.get_Player()==2){
-                  possible_case = row - i;
+                if (selected.get_Player() == 1) {
+                    possible_case = row + i;
+                } else if (selected.get_Player() == 2) {
+                    possible_case = row - i;
                 }
                 int index = possible_case * 15 + col;
                 String type = Plateau.plateau.get(index).get_type();
                 if (type.equals(" ")) {
                     Plateau.plateau.get(index).set_reachable(true);
-                }else{
-                  Plateau.plateau.get(index).set_reachable(false);
-                  break;
+                } else {
+                    Plateau.plateau.get(index).set_reachable(false);
+                    break;
                 }
-              }
-          // if(selected instanceof Enzyme){
-          //   int row = selected.get_row();
-          //   int col = selected.get_col();
-          //   int[] possible_case = new int[];
-          //   for(int i = 1 ; i<3 ; i++){
-          //     int move = row-i;
-          //     int move2 = row+i;
-          //     possible_case.add(move);
-          //     possible_case.add(move2);
-          //
-          //   }
-          //
-          // }
-            } else {
-                        return;
-                    }
-
             }
+            // if(selected instanceof Enzyme){
+            //   int row = selected.get_row();
+            //   int col = selected.get_col();
+            //   int[] possible_case = new int[];
+            //   for(int i = 1 ; i<3 ; i++){
+            //     int move = row-i;
+            //     int move2 = row+i;
+            //     possible_case.add(move);
+            //     possible_case.add(move2);
+            //
+            //   }
+            //
+            // }
+        } else {
+            return;
+        }
 
+    }
 
     public void unreachable() {
         for (int i = 0; i < Plateau.plateau.size(); i++) {
@@ -222,27 +225,24 @@ public class GUI {
         //imageIcon = new ImageIcon(newimg);
         //JLabel background = new JLabel(imageIcon);
         //f.add(background);
-        
-        JPanel p2=new JPanel();
+
+        JPanel p2 = new JPanel();
         p2.setLayout(null);
-        p2.setPreferredSize(new Dimension(300,800));
+        p2.setPreferredSize(new Dimension(300, 800));
         JLabel titre = new JLabel();
         titre.setText("JPlusPlus");
         titre.setFont(new Font("Serif", Font.PLAIN, 44));
         titre.setBounds(20, 50, 300, 50);
-        
-        
+
         JLabel joueur1 = new JLabel();
         joueur1.setText("Score joueur 1: ");
         joueur1.setFont(new Font("Serif", Font.PLAIN, 20));
         joueur1.setBounds(20, 150, 200, 100);
 
-
         JLabel joueur2 = new JLabel();
         joueur2.setText("Score joueur 1: ");
         joueur2.setFont(new Font("Serif", Font.PLAIN, 20));
         joueur2.setBounds(20, 250, 200, 100);
-
 
         p2.add(titre);
         p2.add(joueur1);
@@ -252,7 +252,7 @@ public class GUI {
         sp.setResizeWeight(0.7);
         sp.setEnabled(false);
         sp.setDividerSize(10);
-        
+
         sp.add(createGridPanel());
         sp.add(p2);
         f.add(sp, BorderLayout.CENTER);
