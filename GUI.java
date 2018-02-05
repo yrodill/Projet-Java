@@ -125,7 +125,9 @@ public class GUI {
                         click = 0;
                     } else {
                         System.out.println("Case inaccessible!");
-                        click = 1;
+                        clicked.highlight(false);
+                        unreachable();
+                        click = 0;
                     }
 
                     updatedisplay();
@@ -152,8 +154,24 @@ public class GUI {
                 String type = Plateau.plateau.get(index).get_type();
                 if (type.equals(" ")) {
                     Plateau.plateau.get(index).set_reachable(true);
+                }else{
+                  Plateau.plateau.get(index).set_reachable(false);
+                  break;
                 }
               }
+          // if(selected instanceof Enzyme){
+          //   int row = selected.get_row();
+          //   int col = selected.get_col();
+          //   int[] possible_case = new int[];
+          //   for(int i = 1 ; i<3 ; i++){
+          //     int move = row-i;
+          //     int move2 = row+i;
+          //     possible_case.add(move);
+          //     possible_case.add(move2);
+          //
+          //   }
+          //
+          // }
             } else {
                         return;
                     }
