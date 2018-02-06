@@ -28,9 +28,15 @@ public class GUI {
     private final List<JButton> list = new ArrayList<JButton>();
     public int click = 0;
     public Case clicked;
-    public ImageIcon mito = new ImageIcon("./mito_red.png");
+    public ImageIcon mitoRed = new ImageIcon("./mito_red.png");
+    public ImageIcon mitoBlue = new ImageIcon("./mito_blue.png");
+    public ImageIcon mitoGreen = new ImageIcon("./mito_green.png");
+    public ImageIcon mitoRose = new ImageIcon("./mito_rose.png");
     public ImageIcon lipid = new ImageIcon("./lipid.png");
-    public ImageIcon enzyme = new ImageIcon("./enzyme_red.png");
+    public ImageIcon enzymeRed = new ImageIcon("./enzyme_red.png");
+    public ImageIcon enzymeBlue = new ImageIcon("./enzyme_blue.png");
+    public ImageIcon enzymeGreen = new ImageIcon("./enzyme_green.png");
+    public ImageIcon enzymeRose = new ImageIcon("./enzyme_rose.png");
     public ImageIcon redc = new ImageIcon(new ImageIcon("./circlered.png").getImage().getScaledInstance(52, 52, Image.SCALE_DEFAULT));
 
     private JButton getGridButton(int r, int c) {
@@ -58,23 +64,32 @@ public class GUI {
             b.setBackground(new Color(145, 147, 255));
             b.setOpaque(true);
         }
-        if (type.equals("M")) {
-            b.setIcon(mito);
+        if (type.equals("M") && pieceaposer.get_color().equals("Rouge")) {
+            b.setIcon(mitoRed);
+        }
+        if (type.equals("M") && pieceaposer.get_color().equals("Bleu")) {
+            b.setIcon(mitoBlue);
+        }
+        if (type.equals("M") && pieceaposer.get_color().equals("Vert")) {
+            b.setIcon(mitoGreen);
+        }
+        if (type.equals("M") && pieceaposer.get_color().equals("Rose")) {
+            b.setIcon(mitoRose);
         }
         if (type.equals("L")) {
             b.setIcon(lipid);
         }
-        if (type.equals("E")) {
-            //b.setBorder(null);
-            //JLabel picLabel = new JLabel();
-            //picLabel.setIcon(redc);
-            //JLabel picIcon = new JLabel();
-            //picIcon.setIcon(enzyme);
-            //picIcon.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-//
-            //b.add(picIcon);
-            //b.add(picLabel);
-            b.setIcon(enzyme);
+        if (type.equals("E") && pieceaposer.get_color().equals("Rouge")) {
+            b.setIcon(enzymeRed);
+        }
+        if (type.equals("E") && pieceaposer.get_color().equals("Bleu")) {
+            b.setIcon(enzymeBlue);
+        }
+        if (type.equals("E") && pieceaposer.get_color().equals("Vert")) {
+            b.setIcon(enzymeGreen);
+        }
+        if (type.equals("E") && pieceaposer.get_color().equals("Rose")) {
+            b.setIcon(enzymeRose);
         }
         if (highlighted) {
             b.setBackground(Color.GREEN);
@@ -115,8 +130,9 @@ public class GUI {
                         int old_col = clicked.get_col();
                         int old_index = (old_row * 15 + old_col);
                         int joueur = clicked.get_Player();
+                        String color = clicked.get_color();
                         System.out.println("Joueur ="+joueur);
-                        Case vide = new Case_vide(old_row, old_col,joueur);
+                        Case vide = new Case_vide(old_row, old_col,joueur,color);
 
                         int target_row = target.get_row();
                         int target_col = target.get_col();

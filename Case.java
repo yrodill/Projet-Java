@@ -6,6 +6,7 @@ public class Case {
     private int x;
     private int y;
     private int player;
+    private String couleur;
     private boolean highlighted = false;
     private boolean reachable = false;
 
@@ -21,6 +22,10 @@ public class Case {
       player = joueur;
     }
 
+    public void set_color(String color){
+      couleur=color;
+    }
+
     public int get_row() {
         return x;
     }
@@ -33,6 +38,10 @@ public class Case {
       return player;
     }
 
+    public String get_color(){
+      return couleur;
+    }
+
     public Vector get_coordinate() {
         Vector coordinate = new Vector();
         coordinate.add(x);
@@ -40,10 +49,11 @@ public class Case {
         return coordinate;
     }
 
-    public Case(int row, int col, int joueur) {
+    public Case(int row, int col, int joueur,String color) {
         x = row;
         y = col;
         joueur = 0;
+        couleur="";
     }
 
     public void affiche() {
