@@ -204,7 +204,7 @@ public class GUI {
 
               for(int j=0;j<move_possible_enzyme.size();j++){
                 String type = Plateau.plateau.get(move_possible_enzyme.get(j)).get_type();
-                if((move_possible_enzyme.get(j)>=0 && move_possible_enzyme.get(j)<=225) && (type.equals(" "))){
+                if(type.equals(" ")){
                   Plateau.plateau.get(move_possible_enzyme.get(j)).set_reachable(true);
                   }
               }
