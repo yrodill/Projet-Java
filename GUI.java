@@ -79,6 +79,9 @@ public class GUI {
         if (type.equals("L")) {
             b.setIcon(lipid);
         }
+        if (type.equals(" ")) {
+            b.setText(row+","+col);
+        }
         if (type.equals("E") && pieceaposer.get_color().equals("Rouge")) {
             b.setIcon(enzymeRed);
         }
