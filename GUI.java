@@ -25,6 +25,8 @@ import javax.imageio.ImageIO;
 public class GUI {
 
     private static final int N = 15;
+    public static int scoreJ1;
+    public static int scoreJ2;
     private final List<JButton> list = new ArrayList<JButton>();
     public int click = 0;
     public Case clicked;
@@ -140,7 +142,26 @@ public class GUI {
                         int target_row = target.get_row();
                         int target_col = target.get_col();
                         int new_index = (target_row * 15 + target_col);
-
+                        String type = Plateau.plateau.get(new_index).get_type();
+                        if(type.equals("M") && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color()) ){
+                          if(clicked.get_Player()==1){
+                            scoreJ1++;
+                            if(clicked.get_nbMetaboCacthed() >= 5){
+                              scoreJ1--;
+                              System.out.println("Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                            }
+                          }
+                          else if(clicked.get_Player()==2){
+                            scoreJ2++;
+                            if(clicked.get_nbMetaboCacthed() >= 5){
+                              scoreJ2--;
+                              System.out.println("Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                            }
+                          }
+                          clicked.increase_nbMetaboCatched();
+                          int nbMetaboCatched = clicked.get_nbMetaboCacthed();
+                          System.out.println("Nbmétabo dans cette enzyme : "+nbMetaboCatched);
+                        }
                         clicked.set_x(target_row);
                         clicked.set_y(target_col);
                         Plateau.plateau.set(new_index, clicked);
@@ -300,12 +321,12 @@ public class GUI {
         titre.setBounds(20, 50, 300, 50);
 
         JLabel joueur1 = new JLabel();
-        joueur1.setText("Score joueur 1: ");
+        joueur1.setText("Score joueur 1: "+scoreJ1);
         joueur1.setFont(new Font("Serif", Font.PLAIN, 20));
         joueur1.setBounds(20, 150, 200, 100);
 
         JLabel joueur2 = new JLabel();
-        joueur2.setText("Score joueur 1: ");
+        joueur2.setText("Score joueur 2: "+scoreJ2);
         joueur2.setFont(new Font("Serif", Font.PLAIN, 20));
         joueur2.setBounds(20, 250, 200, 100);
 
