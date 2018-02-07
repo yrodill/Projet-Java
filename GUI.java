@@ -187,43 +187,50 @@ public class GUI {
             if(selected instanceof Enzyme){
               int row = selected.get_row();
               int col = selected.get_col();
+              int move,move2,move4,move5,move7,move8;
+              move=0;move2=0;move4=0;move5=0;move7=0;move8=0;
               List<Integer> move_possible_enzyme = new ArrayList<Integer>();
-              int move = row*15-1+col;
-              int move2 = row*15+1+col;
-              int move3 = (row-1)*15+col;
-              int move4 = (row-1)*15+col-1;
-              int move5 = (row-1)*15+col+1;
-              int move6 = (row+1)*15+col;
-              int move7 = (row+1)*15+col-1;
-              int move8 = (row+1)*15+col+1;
-              if(move >=0 && move < 225){
+              if(col != 0){
+                move = row*15-1+col; //gauche
+                move4 = (row-1)*15+col-1; //diagonale haut gauche
+                move7 = (row+1)*15+col-1; // diagonale bas gauche
+              }
+              if(col != 14){
+                move2 = row*15+1+col; //droite
+                move5 = (row-1)*15+col+1; // diagonale haut droite
+                move8 = (row+1)*15+col+1; //diagonale bas droite
+
+              }
+              int move3 = (row-1)*15+col; //haut
+              int move6 = (row+1)*15+col; // bas
+              if(test_move(move)){
                 move_possible_enzyme.add(move);
               }
-              if(move2 >=0 && move2 < 225){
+              if(test_move(move2)){
+                move_possible_enzyme.add(move2);
               }
-              move_possible_enzyme.add(move2);
-              if(move3 >=0 && move3 < 225){
+              if(test_move(move3)){
                 move_possible_enzyme.add(move3);
               }
-              if(move4 >=0 && move4 < 225){
+              if(test_move(move4)){
                 move_possible_enzyme.add(move4);
               }
-              if(move5 >=0 && move5 < 225){
+              if(test_move(move5)){
                 move_possible_enzyme.add(move5);
               }
-              if(move6 >=0 && move6 < 225){
+              if(test_move(move6)){
                 move_possible_enzyme.add(move6);
               }
-              if(move7 >=0 && move7 < 225){
+              if(test_move(move7)){
                 move_possible_enzyme.add(move7);
               }
-              if(move8 >=0 && move8 < 225){
+              if(test_move(move8)){
                 move_possible_enzyme.add(move8);
               }
 
               for(int j=0;j<move_possible_enzyme.size();j++){
                 String type = Plateau.plateau.get(move_possible_enzyme.get(j)).get_type();
-                if(type.equals(" ")){
+                if(!type.equals("E")){
                   Plateau.plateau.get(move_possible_enzyme.get(j)).set_reachable(true);
                   }
               }
@@ -233,6 +240,13 @@ public class GUI {
             return;
         }
 
+    }
+
+    public boolean test_move(int move){
+      if(move >= 0 && move <225){
+        return true;
+      }
+      return false;
     }
 
     public void unreachable() {
