@@ -55,62 +55,22 @@ public class Plateau {
         int pickColor2 = 0;
         int pickColor3=0;
         ArrayList<String> couleursEnzyme = new ArrayList<String>();
-        couleursEnzyme.add("Rouge");
-        couleursEnzyme.add("Rouge");
-        couleursEnzyme.add("Bleu");
-        couleursEnzyme.add("Bleu");
-        couleursEnzyme.add("Vert");
-        couleursEnzyme.add("Vert");
-        couleursEnzyme.add("Rose");
-        couleursEnzyme.add("Rose");
-
+        for(int i=0;i<2;i++){
+          couleursEnzyme.add("Rouge");
+          couleursEnzyme.add("Bleu");
+          couleursEnzyme.add("Vert");
+          couleursEnzyme.add("Rose");
+        }
         ArrayList<String> couleursMetabolite = new ArrayList<String>();
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Rouge");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Vert");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Bleu");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
-        couleursMetabolite.add("Rose");
+        for(int i=0;i<10;i++){
+          couleursMetabolite.add("Rouge");
+          couleursMetabolite.add("Vert");
+          couleursMetabolite.add("Bleu");
+          couleursMetabolite.add("Rose");
+        }
 
         Collections.shuffle(couleursEnzyme);
         Collections.shuffle(couleursMetabolite);
-        System.out.println(couleursEnzyme);
         for (int row = 0; row < 15; row++) {
             for (int col = 0; col < 15; col++) {
                 int index = (row * 15 + col);
@@ -118,13 +78,10 @@ public class Plateau {
                 if (row == 0 && (col % 2 == 0)) {
                     int joueur = 1;
                     Case enzyme = new Enzyme(row, col,joueur,color);
-                    System.out.println(couleursEnzyme.get(pickColor));
                     enzyme.set_color(couleursEnzyme.get(pickColor));
                     pickColor++;
-                    System.out.println(pickColor);
                     enzyme.set_joueur(joueur);
                     String quelcouleur = enzyme.get_color();
-                    System.out.println(quelcouleur);
                     plateau.add(index, enzyme);
                 }
                 else if  (row == 14 && (col % 2 == 0)) {
