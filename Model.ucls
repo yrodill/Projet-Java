@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="GUI" project="Projet-Java" file="/Projet-Java/GUI.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="556" width="370" x="4" y="-258"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="Plateau" project="Projet-Java" file="/Projet-Java/Plateau.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="275" width="588" x="-2" y="329"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="Case" project="Projet-Java" file="/Projet-Java/Case.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="490" y="24"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="Case_vide" project="Projet-Java" file="/Projet-Java/Case_vide.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="695" y="-210"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="Enzyme" project="Projet-Java" file="/Projet-Java/Enzyme.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="153" x="618" y="-106"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="Lipid" project="Projet-Java" file="/Projet-Java/Lipid.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="104" width="159" x="621" y="16"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="Metabolite" project="Projet-Java" file="/Projet-Java/Metabolite.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="699" y="185"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="8">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="9" name="plateau"/>      
+      <multiplicity id="10" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="13">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="14">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="15" name="clicked"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

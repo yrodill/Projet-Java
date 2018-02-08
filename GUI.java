@@ -112,18 +112,7 @@ public class GUI {
 
                 //   Iterator<Case> cases_selected = Plateau.plateau.iterator();
                 //   while (cases_selected.hasNext()) {
-                Vector<Integer> randomcasepicker = new Vector();
-                for (int nbdecase = 0; nbdecase < Plateau.plateau.size(); nbdecase++) {
-                    randomcasepicker.add(nbdecase, nbdecase);
-                }
-                Collections.shuffle(randomcasepicker);
-                for (int j = 0; j < randomcasepicker.size(); j++) {
-                    Case metaboSelected = Plateau.plateau.get(randomcasepicker.get(j));
-                    if (metaboSelected instanceof Metabolite) {
-                        Plateau.move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
-                    }
 
-                }
 
                 //   }
 
@@ -195,6 +184,30 @@ public class GUI {
                         clicked.highlight(false);
                         unreachable();
                         click = 0;
+
+
+
+
+
+
+                        Vector<Integer> randomcasepicker = new Vector();
+                        for (int nbdecase = 0; nbdecase < Plateau.plateau.size(); nbdecase++) {
+                            randomcasepicker.add(nbdecase, nbdecase);
+                        }
+                        Collections.shuffle(randomcasepicker);
+                        for (int j = 0; j < randomcasepicker.size(); j++) {
+                            Case metaboSelected = Plateau.plateau.get(randomcasepicker.get(j));
+                            if (metaboSelected instanceof Metabolite) {
+                                Plateau.move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
+                            }
+        
+                        }
+
+
+
+
+
+
                     } else {
                         System.out.println("Case inaccessible!");
                         clicked.highlight(false);
