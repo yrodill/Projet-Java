@@ -39,7 +39,8 @@ public class GUI {
     public ImageIcon enzymeBlue = new ImageIcon("./enzyme_blue.png");
     public ImageIcon enzymeGreen = new ImageIcon("./enzyme_green.png");
     public ImageIcon enzymeRose = new ImageIcon("./enzyme_rose.png");
-    public ImageIcon redc = new ImageIcon(new ImageIcon("./circlered.png").getImage().getScaledInstance(52, 52, Image.SCALE_DEFAULT));
+    public ImageIcon redc = new ImageIcon(
+            new ImageIcon("./circlered.png").getImage().getScaledInstance(52, 52, Image.SCALE_DEFAULT));
 
     private JButton getGridButton(int r, int c) {
         int index = r * N + c;
@@ -62,7 +63,7 @@ public class GUI {
             // b.setContentAreaFilled(false);
             // b.setHorizontalAlignment(SwingConstants.CENTER);
         }
-        if (pieceaposer.get_Player()  == 2) {
+        if (pieceaposer.get_Player() == 2) {
             b.setBackground(new Color(145, 147, 255));
             b.setOpaque(true);
         }
@@ -82,7 +83,7 @@ public class GUI {
             b.setIcon(lipid);
         }
         if (type.equals(" ")) {
-            b.setText(row+","+col);
+            b.setText(row + "," + col);
         }
         if (type.equals("E") && pieceaposer.get_color().equals("Rouge")) {
             b.setIcon(enzymeRed);
@@ -108,14 +109,23 @@ public class GUI {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              Iterator<Case> cases_selected = Plateau.plateau.iterator();
-              while (cases_selected.hasNext()) {
-                  Case metaboSelected = cases_selected.next();
-                  if(metaboSelected instanceof Metabolite){
-                    Plateau.move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
-                  }
 
-              }
+                //   Iterator<Case> cases_selected = Plateau.plateau.iterator();
+                //   while (cases_selected.hasNext()) {
+                Vector<Integer> randomcasepicker = new Vector();
+                for (int nbdecase = 0; nbdecase < Plateau.plateau.size(); nbdecase++) {
+                    randomcasepicker.add(nbdecase, nbdecase);
+                }
+                Collections.shuffle(randomcasepicker);
+                for (int j = 0; j < randomcasepicker.size(); j++) {
+                    Case metaboSelected = Plateau.plateau.get(randomcasepicker.get(j));
+                    if (metaboSelected instanceof Metabolite) {
+                        Plateau.move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
+                    }
+
+                }
+
+                //   }
 
                 click++;
                 JButton gb = GUI.this.getGridButton(row, col);
@@ -126,13 +136,12 @@ public class GUI {
 
                     clicked = Plateau.plateau.get(index);
                     int joueur = clicked.get_Player();
-                    System.out.println("Joueur ="+joueur);
+                    System.out.println("Joueur =" + joueur);
                     clicked.highlight(true);
-                    if(clicked.get_type().equals("L")){
-                      Plateau.move_lipides(clicked);
-                    }
-                    else if(clicked.get_type().equals("E")){
-                      Plateau.move_enzyme(clicked);
+                    if (clicked.get_type().equals("L")) {
+                        Plateau.move_lipides(clicked);
+                    } else if (clicked.get_type().equals("E")) {
+                        Plateau.move_enzyme(clicked);
                     }
                     updatedisplay();
                 }
@@ -150,31 +159,33 @@ public class GUI {
                         int old_index = (old_row * 15 + old_col);
                         int joueur = clicked.get_Player();
                         String color = clicked.get_color();
-                        System.out.println("Joueur ="+joueur);
-                        Case vide = new Case_vide(old_row, old_col,joueur,color);
+                        System.out.println("Joueur =" + joueur);
+                        Case vide = new Case_vide(old_row, old_col, joueur, color);
 
                         int target_row = target.get_row();
                         int target_col = target.get_col();
                         int new_index = (target_row * 15 + target_col);
                         String type = Plateau.plateau.get(new_index).get_type();
-                        if(type.equals("M") && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color()) ){
-                          if(clicked.get_Player()==1){
-                            scoreJ1++;
-                            if(clicked.get_nbMetaboCacthed() >= 5){
-                              scoreJ1--;
-                              System.out.println("Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                        if (type.equals("M")
+                                && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
+                            if (clicked.get_Player() == 1) {
+                                scoreJ1++;
+                                if (clicked.get_nbMetaboCacthed() >= 5) {
+                                    scoreJ1--;
+                                    System.out.println(
+                                            "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                                }
+                            } else if (clicked.get_Player() == 2) {
+                                scoreJ2++;
+                                if (clicked.get_nbMetaboCacthed() >= 5) {
+                                    scoreJ2--;
+                                    System.out.println(
+                                            "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                                }
                             }
-                          }
-                          else if(clicked.get_Player()==2){
-                            scoreJ2++;
-                            if(clicked.get_nbMetaboCacthed() >= 5){
-                              scoreJ2--;
-                              System.out.println("Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
-                            }
-                          }
-                          clicked.increase_nbMetaboCatched();
-                          int nbMetaboCatched = clicked.get_nbMetaboCacthed();
-                          System.out.println("Nbmétabo dans cette enzyme : "+nbMetaboCatched);
+                            clicked.increase_nbMetaboCatched();
+                            int nbMetaboCatched = clicked.get_nbMetaboCacthed();
+                            System.out.println("Nbmétabo dans cette enzyme : " + nbMetaboCatched);
                         }
                         clicked.set_x(target_row);
                         clicked.set_y(target_col);
@@ -197,8 +208,6 @@ public class GUI {
         });
         return b;
     }
-
-
 
     public void unreachable() {
         for (int i = 0; i < Plateau.plateau.size(); i++) {
@@ -225,23 +234,21 @@ public class GUI {
         f.getContentPane().removeAll();
         list.clear();
         display();
-       // printboard();
+        // printboard();
     }
 
-
-public void printboard(){
-    for (int i = 0; i < Plateau.plateau.size(); i++) {
-        String ext_case = Plateau.plateau.get(i).get_type();
-        if (ext_case.equals(" ")){
-            ext_case="_";
+    public void printboard() {
+        for (int i = 0; i < Plateau.plateau.size(); i++) {
+            String ext_case = Plateau.plateau.get(i).get_type();
+            if (ext_case.equals(" ")) {
+                ext_case = "_";
+            }
+            if (i % 15 == 0) {
+                System.out.println("\n");
+            }
+            System.out.print(ext_case + "\t");
         }
-        if(i%15==0){
-        System.out.println("\n");            
-        }
-        System.out.print(ext_case+"\t");
     }
-}
-
 
     JFrame f = new JFrame("JPlusPlus");
 
@@ -268,12 +275,12 @@ public void printboard(){
         titre.setBounds(20, 50, 300, 50);
 
         JLabel joueur1 = new JLabel();
-        joueur1.setText("Score joueur 1: "+scoreJ1);
+        joueur1.setText("Score joueur 1: " + scoreJ1);
         joueur1.setFont(new Font("Serif", Font.PLAIN, 20));
         joueur1.setBounds(20, 150, 200, 100);
 
         JLabel joueur2 = new JLabel();
-        joueur2.setText("Score joueur 2: "+scoreJ2);
+        joueur2.setText("Score joueur 2: " + scoreJ2);
         joueur2.setFont(new Font("Serif", Font.PLAIN, 20));
         joueur2.setBounds(20, 250, 200, 100);
 

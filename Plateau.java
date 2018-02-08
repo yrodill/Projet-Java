@@ -114,7 +114,7 @@ public class Plateau {
                 }
             }
         }
-        for (int nbmetabolite = 0; nbmetabolite < 10; nbmetabolite++) {
+        for (int nbmetabolite = 0; nbmetabolite < 40; nbmetabolite++) {
             Vector<Integer> randomcoord = new Vector();
             randomcoord = RandomPlace();
             Integer new_row = randomcoord.get(0);
