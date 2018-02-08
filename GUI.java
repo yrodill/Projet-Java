@@ -207,7 +207,7 @@ public class GUI {
                     break;
                 }
             }}
-          /*  if(selected instanceof Enzyme){
+            if(selected instanceof Enzyme){
               int row = selected.get_row();
               int col = selected.get_col();
               int move,move2,move4,move5,move7,move8;
@@ -261,7 +261,7 @@ public class GUI {
                   }
               }
 
-            }*/
+            }
           else {
             return;
         }
