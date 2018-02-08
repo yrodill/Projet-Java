@@ -126,35 +126,43 @@ public class Plateau {
             pickColor3++;
             plateau.set(index, metabolite);
         }
-
-        move_metabolite();
     }
 
     public static void move_metabolite() {
 
         Iterator<Case> cases_selected = plateau.iterator();
         while (cases_selected.hasNext()) {
-            Vector possible_move = new Vector();
+            Vector<Vector> possible_move = new Vector();
             Case selected = cases_selected.next();
             //System.out.println(cases_selected.next());            
             if (selected instanceof Metabolite) {
 
                 int row = selected.get_row();
                 int col = selected.get_col();
+                int index = row * 15 + col;
 
                 for (int i = 1; i < 4; i++) {
                     int possible_col = col + i; //droite
+                    int possible_index = row * 15 + possible_col;
                     if (bornee(possible_col)) {
-                        Vector possible_coordinate = new Vector();
+                        if (!plateau.get(possible_index).get_type().equals(" ")) {
+                            break;
+                        }
+                        Vector<Integer> possible_coordinate = new Vector();
                         possible_coordinate.add(row);
                         possible_coordinate.add(possible_col);
                         possible_move.add(possible_coordinate);
                     }
                 }
+                
                 for (int i = 1; i < 4; i++) {
                     int possible_col = col - i; //gauche
+                    int possible_index = row * 15 + possible_col;
                     if (bornee(possible_col)) {
-                        Vector possible_coordinate = new Vector();
+                        if (!plateau.get(possible_index).get_type().equals(" ")) {
+                            break;
+                        }
+                        Vector<Integer> possible_coordinate = new Vector();
                         possible_coordinate.add(row);
                         possible_coordinate.add(possible_col);
                         possible_move.add(possible_coordinate);
@@ -162,8 +170,12 @@ public class Plateau {
                 }
                 for (int i = 1; i < 4; i++) {
                     int possible_row = row + i; //bas
+                    int possible_index = possible_row * 15 + col;
                     if (bornee(possible_row)) {
-                        Vector possible_coordinate = new Vector();
+                        if (!plateau.get(possible_index).get_type().equals(" ")) {
+                            break;
+                        }
+                        Vector<Integer> possible_coordinate = new Vector();
                         possible_coordinate.add(possible_row);
                         possible_coordinate.add(col);
                         possible_move.add(possible_coordinate);
@@ -171,24 +183,37 @@ public class Plateau {
                 }
                 for (int i = 1; i < 4; i++) {
                     int possible_row = row - i; //haut
+                    int possible_index = possible_row * 15 + col;
                     if (bornee(possible_row)) {
-                        Vector possible_coordinate = new Vector();
+                        if (!plateau.get(possible_index).get_type().equals(" ")) {
+                            break;
+                        }
+                        Vector<Integer> possible_coordinate = new Vector();
                         possible_coordinate.add(possible_row);
                         possible_coordinate.add(col);
                         possible_move.add(possible_coordinate);
                     }
                 }
-
-
-
+                if (!possible_move.isEmpty()) {
+                    printvector(possible_move);
+                    Random r = new Random();
+                    int randomindex = r.nextInt(possible_move.size());
+                    Vector<Integer> coord_choisie = possible_move.get(randomindex);
+                    Integer row_choisie = coord_choisie.get(0);
+                    Integer col_choisie = coord_choisie.get(1);
+                    Integer index_choisie = row_choisie * 15 + col_choisie;
+                    System.out.println("\nrow: " + row_choisie);
+                    System.out.println("col: " + col_choisie);
+                    selected.set_x(row_choisie);
+                    selected.set_y(col_choisie);
+                    Case vide = new Case_vide(row, col, 0, "blanc");
+                    plateau.set(index, vide);
+                    plateau.set(index_choisie, selected);
+                }
             }
 
-            printvector(possible_move);
-            System.out.println("\n");
         }
     }
-
-    
 
     public static boolean bornee(int coord_xy) {
         if (coord_xy < 15 && coord_xy > -1) {

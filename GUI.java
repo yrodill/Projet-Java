@@ -108,6 +108,8 @@ public class GUI {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                Plateau.move_metabolite();//TESTINGGGGGGGGGGGGGG
+
                 click++;
                 JButton gb = GUI.this.getGridButton(row, col);
                 System.out.println("r" + row + ",c" + col + " " + (b == gb) + " " + (b.equals(gb)));
@@ -254,6 +256,9 @@ public class GUI {
                 if(!type.equals("E")){
                   Plateau.plateau.get(move_possible_enzyme.get(j)).set_reachable(true);
                   }
+                  else{
+                  Plateau.plateau.get(move_possible_enzyme.get(j)).set_reachable(false);                      
+                  }
               }
 
             }
@@ -302,6 +307,7 @@ public class GUI {
     public boolean init = true;
 
     public void display() {
+        
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //f.setResizable(false);
         //f.add(createGridPanel());
