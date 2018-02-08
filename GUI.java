@@ -225,7 +225,23 @@ public class GUI {
         f.getContentPane().removeAll();
         list.clear();
         display();
+       // printboard();
     }
+
+
+public void printboard(){
+    for (int i = 0; i < Plateau.plateau.size(); i++) {
+        String ext_case = Plateau.plateau.get(i).get_type();
+        if (ext_case.equals(" ")){
+            ext_case="_";
+        }
+        if(i%15==0){
+        System.out.println("\n");            
+        }
+        System.out.print(ext_case+"\t");
+    }
+}
+
 
     JFrame f = new JFrame("JPlusPlus");
 
