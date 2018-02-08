@@ -108,7 +108,14 @@ public class GUI {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Plateau.move_metabolite();//TESTINGGGGGGGGGGGGGG
+              Iterator<Case> cases_selected = Plateau.plateau.iterator();
+              while (cases_selected.hasNext()) {
+                  Case metaboSelected = cases_selected.next();
+                  if(metaboSelected instanceof Metabolite){
+                    Plateau.move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
+                  }
+
+              }
 
                 click++;
                 JButton gb = GUI.this.getGridButton(row, col);
@@ -121,7 +128,12 @@ public class GUI {
                     int joueur = clicked.get_Player();
                     System.out.println("Joueur ="+joueur);
                     clicked.highlight(true);
-                    listOfpossibilities(clicked);
+                    if(clicked.get_type().equals("L")){
+                      Plateau.move_lipides(clicked);
+                    }
+                    else if(clicked.get_type().equals("E")){
+                      Plateau.move_enzyme(clicked);
+                    }
                     updatedisplay();
                 }
                 if (click == 2) {
@@ -186,94 +198,7 @@ public class GUI {
         return b;
     }
 
-    public void listOfpossibilities(Case selected) {
-        if (selected instanceof Lipid) {
-            int row = selected.get_row();
-            int col = selected.get_col();
-            int possible_case = 0;
-            //System.out.println(row + "," + col);
-            for (int i = 1; i <= 3; i++) {
-                if (selected.get_Player() == 1) {
-                    possible_case = row + i;
-                } else if (selected.get_Player() == 2) {
-                    possible_case = row - i;
-                }
-                int index = possible_case * 15 + col;
-                String type = Plateau.plateau.get(index).get_type();
-                if (type.equals(" ")) {
-                    Plateau.plateau.get(index).set_reachable(true);
-                } else {
-                    Plateau.plateau.get(index).set_reachable(false);
-                    break;
-                }
-            }}
-            if(selected instanceof Enzyme){
-              int row = selected.get_row();
-              int col = selected.get_col();
-              int move,move2,move4,move5,move7,move8;
-              move=0;move2=0;move4=0;move5=0;move7=0;move8=0;
-              List<Integer> move_possible_enzyme = new ArrayList<Integer>();
-              if(col != 0){
-                move = row*15-1+col; //gauche
-                move4 = (row-1)*15+col-1; //diagonale haut gauche
-                move7 = (row+1)*15+col-1; // diagonale bas gauche
-              }
-              if(col != 14){
-                move2 = row*15+1+col; //droite
-                move5 = (row-1)*15+col+1; // diagonale haut droite
-                move8 = (row+1)*15+col+1; //diagonale bas droite
 
-              }
-              int move3 = (row-1)*15+col; //haut
-              int move6 = (row+1)*15+col; // bas
-              if(test_move(move)){
-                move_possible_enzyme.add(move);
-              }
-              if(test_move(move2)){
-                move_possible_enzyme.add(move2);
-              }
-              if(test_move(move3)){
-                move_possible_enzyme.add(move3);
-              }
-              if(test_move(move4)){
-                move_possible_enzyme.add(move4);
-              }
-              if(test_move(move5)){
-                move_possible_enzyme.add(move5);
-              }
-              if(test_move(move6)){
-                move_possible_enzyme.add(move6);
-              }
-              if(test_move(move7)){
-                move_possible_enzyme.add(move7);
-              }
-              if(test_move(move8)){
-                move_possible_enzyme.add(move8);
-              }
-
-              for(int j=0;j<move_possible_enzyme.size();j++){
-                String type = Plateau.plateau.get(move_possible_enzyme.get(j)).get_type();
-                if(!type.equals("E")){
-                  Plateau.plateau.get(move_possible_enzyme.get(j)).set_reachable(true);
-                  }
-                  else{
-                  Plateau.plateau.get(move_possible_enzyme.get(j)).set_reachable(false);                      
-                  }
-              }
-
-            }
-          else {
-            return;
-        }
-
-    }
-
-    public boolean test_move(int move){
-      if(move >= 0 && move <225){
-        return true;
-      }
-      return false;
-    }
 
     public void unreachable() {
         for (int i = 0; i < Plateau.plateau.size(); i++) {
@@ -307,7 +232,7 @@ public class GUI {
     public boolean init = true;
 
     public void display() {
-        
+
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //f.setResizable(false);
         //f.add(createGridPanel());
