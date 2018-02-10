@@ -18,7 +18,7 @@ import javax.swing.*;
 
 import javax.imageio.ImageIO;
 
-public class Menu extends GUI{
+public class Menu{
 
 
   public static void launcher(){
@@ -58,13 +58,16 @@ public class Menu extends GUI{
 
             //   Iterator<Case> cases_selected = Plateau.plateau.iterator();
             //   while (cases_selected.hasNext()) {
-
-            Plateau.set_element();
-            new GUI().display();
-            window.setVisible(false);
+        	GUI.debut_partie();
+        	window.setVisible(false);
 
       }
 
   });
 }
+  
+  public static void main(String[] args){
+	    launcher();
+  }
+  
 }
