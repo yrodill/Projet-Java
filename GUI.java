@@ -44,9 +44,9 @@ public class GUI {
     public ImageIcon redc = new ImageIcon(
             new ImageIcon("./circlered.png").getImage().getScaledInstance(52, 52, Image.SCALE_DEFAULT));
 
-    public int etape_tour=1; //0:metabolite, 1: joueur1, joueur2,
-    public int nb_tour=1;
-    
+    public int etape_tour = 1; //0:metabolite, 1: joueur1, joueur2,
+    public int nb_tour = 1;
+
     private JButton getGridButton(int r, int c) {
         int index = r * N + c;
         return list.get(index);
@@ -88,8 +88,8 @@ public class GUI {
             b.setIcon(lipid);
         }
         if (type.equals(" ")) {
-           // b.setText(row + "," + col);
-           // b.setFont(new Font("Arial", Font.PLAIN, 9));
+            // b.setText(row + "," + col);
+            // b.setFont(new Font("Arial", Font.PLAIN, 9));
         }
         if (type.equals("E") && pieceaposer.get_color().equals("Rouge")) {
             b.setIcon(enzymeRed);
@@ -132,14 +132,14 @@ public class GUI {
                     int joueur = clicked.get_Player();
                     System.out.println("Joueur =" + joueur);
                     clicked.highlight(true);
-                    
+
                     //VERIFICATION DU JOUEUR !
-                    if (joueur!=etape_tour) {
+                    if (joueur != etape_tour) {
                         System.out.println("Ce pion n'est pas à vous !");
                         clicked.highlight(false);
                         click = 0;
                     }
-                    
+
                     else if (clicked.get_type().equals("L")) {
                         Plateau.move_lipides(clicked);
                     } else if (clicked.get_type().equals("E")) {
@@ -162,7 +162,7 @@ public class GUI {
                         int joueur = clicked.get_Player();
                         String color = clicked.get_color();
                         System.out.println("Joueur =" + joueur);
-                        Case vide = new Case_vide(old_row, old_col, joueur, color);
+                        Case vide = new Case(old_row, old_col, joueur, color);
 
                         int target_row = target.get_row();
                         int target_col = target.get_col();
@@ -219,18 +219,18 @@ public class GUI {
     }
 
     public void changer_etape() {
-    	etape_tour++;
-    	if (etape_tour>2) {
-    		etape_tour=0;
-    		nb_tour++;
-    	}
-    	if (etape_tour==0) {
-    		Plateau.move_all_metabolite();
-    		updatedisplay();
-    		changer_etape();
-    	}
+        etape_tour++;
+        if (etape_tour > 2) {
+            etape_tour = 0;
+            nb_tour++;
+        }
+        if (etape_tour == 0) {
+            Plateau.move_all_metabolite();
+            updatedisplay();
+            changer_etape();
+        }
     }
-    
+
     public JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
         p.setPreferredSize(new Dimension(810, 810));
@@ -279,14 +279,14 @@ public class GUI {
         titre.setText("JPlusPlus");
         titre.setFont(new Font("Serif", Font.PLAIN, 44));
         titre.setBounds(20, 50, 300, 50);
-        
+
         JLabel etape = new JLabel();
 
-        String quijoue="Joueur 1";
-        etape.setText("<html>Au tour de: <font color='green'>"+quijoue+"</font></html>");
-        if (etape_tour==2) {
-            quijoue="Joueur 2";
-            etape.setText("<html>Au tour de: <font color='blue'>"+quijoue+"</font></html>");
+        String quijoue = "Joueur 1";
+        etape.setText("<html>Au tour de: <font color='green'>" + quijoue + "</font></html>");
+        if (etape_tour == 2) {
+            quijoue = "Joueur 2";
+            etape.setText("<html>Au tour de: <font color='blue'>" + quijoue + "</font></html>");
         }
         etape.setFont(new Font("Serif", Font.PLAIN, 20));
         etape.setBounds(20, 150, 200, 100);
@@ -296,8 +296,6 @@ public class GUI {
         numero_tour.setFont(new Font("Serif", Font.PLAIN, 20));
         numero_tour.setBounds(20, 200, 200, 100);
 
-        
-        
         JLabel joueur1 = new JLabel();
         joueur1.setText("Score J1   " + scoreJ1);
         joueur1.setFont(new Font("Serif", Font.PLAIN, 20));

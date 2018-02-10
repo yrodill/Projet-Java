@@ -5,9 +5,8 @@ public class Plateau {
     public static Vector<Case> plateau = new Vector<Case>();
     public static int taille_plateau = 15;
     public static int nb_metabolite = 40;
-    public static int distance_max_lipid = 3;
-    public static int distance_max_enzyme = 1;
-    public static int distance_max_metabolite = 1;
+
+
 
     public Plateau(Vector nom) {
         plateau = nom;
@@ -113,7 +112,7 @@ public class Plateau {
 
                 else {
                     int joueur = 0;
-                    Case vide = new Case_vide(row, col, joueur, color);
+                    Case vide = new Case(row, col, joueur, color);
                     vide.set_joueur(joueur);
                     plateau.add(index, vide);
                 }
@@ -149,7 +148,7 @@ public class Plateau {
             int col = selected.get_col();
             int possible_case = 0;
             //System.out.println(row + "," + col);
-            for (int i = 1; i <= distance_max_lipid; i++) {
+            for (int i = 1; i <= Lipid.distance_max; i++) {
                 if (selected.get_Player() == 1) {
                     possible_case = row + i;
                 } else if (selected.get_Player() == 2) {
@@ -231,22 +230,21 @@ public class Plateau {
         }
     }
 
-    
     public static void move_all_metabolite() {
-    Vector<Integer> randomcasepicker = new Vector();
-    for (int nbdecase = 0; nbdecase < plateau.size(); nbdecase++) {
-        randomcasepicker.add(nbdecase, nbdecase);
-    }
-    Collections.shuffle(randomcasepicker);
-    for (int j = 0; j < randomcasepicker.size(); j++) {
-        Case metaboSelected = plateau.get(randomcasepicker.get(j));
-        if (metaboSelected instanceof Metabolite) {
-            move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
+        Vector<Integer> randomcasepicker = new Vector();
+        for (int nbdecase = 0; nbdecase < plateau.size(); nbdecase++) {
+            randomcasepicker.add(nbdecase, nbdecase);
         }
+        Collections.shuffle(randomcasepicker);
+        for (int j = 0; j < randomcasepicker.size(); j++) {
+            Case metaboSelected = plateau.get(randomcasepicker.get(j));
+            if (metaboSelected instanceof Metabolite) {
+                move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
+            }
 
+        }
     }
-    }
-    
+
     public static void move_metabolite(Case metaboSelected) {
 
         Vector<Vector> possible_move = new Vector();
@@ -258,7 +256,7 @@ public class Plateau {
             int col = selected.get_col();
             int index = row * taille_plateau + col;
 
-            for (int i = 1; i <= distance_max_metabolite; i++) {
+            for (int i = 1; i <= Metabolite.distance_max; i++) {
                 int possible_col = col + i; //droite
                 int possible_index = row * taille_plateau + possible_col;
                 if (bornee(possible_col)) {
@@ -272,7 +270,7 @@ public class Plateau {
                 }
             }
 
-            for (int i = 1; i <= distance_max_metabolite; i++) {
+            for (int i = 1; i <= Metabolite.distance_max; i++) {
                 int possible_col = col - i; //gauche
                 int possible_index = row * taille_plateau + possible_col;
                 if (bornee(possible_col)) {
@@ -285,7 +283,7 @@ public class Plateau {
                     possible_move.add(possible_coordinate);
                 }
             }
-            for (int i = 1; i <= distance_max_metabolite; i++) {
+            for (int i = 1; i <= Metabolite.distance_max; i++) {
                 int possible_row = row + i; //bas
                 int possible_index = possible_row * taille_plateau + col;
                 if (bornee(possible_row)) {
@@ -298,7 +296,7 @@ public class Plateau {
                     possible_move.add(possible_coordinate);
                 }
             }
-            for (int i = 1; i <= distance_max_metabolite; i++) {
+            for (int i = 1; i <= Metabolite.distance_max; i++) {
                 int possible_row = row - i; //haut
                 int possible_index = possible_row * taille_plateau + col;
                 if (bornee(possible_row)) {
@@ -325,7 +323,7 @@ public class Plateau {
                 System.out.println("\nrow_choosed: " + row_choisie + " col_choosed: " + col_choisie + "\n");
                 selected.set_x(row_choisie);
                 selected.set_y(col_choisie);
-                Case vide = new Case_vide(row, col, 0, "blanc");
+                Case vide = new Case(row, col, 0, "blanc");
                 plateau.set(index, vide);
                 plateau.set(index_choisie, selected);
             }

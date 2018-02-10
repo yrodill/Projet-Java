@@ -19,12 +19,12 @@ public class Case {
         y = coord_y;
     }
 
-    public void set_joueur(int joueur){
-      player = joueur;
+    public void set_joueur(int joueur) {
+        player = joueur;
     }
 
-    public void set_color(String color){
-      couleur=color;
+    public void set_color(String color) {
+        couleur = color;
     }
 
     public int get_row() {
@@ -35,12 +35,12 @@ public class Case {
         return y;
     }
 
-    public int get_Player(){
-      return player;
+    public int get_Player() {
+        return player;
     }
 
-    public String get_color(){
-      return couleur;
+    public String get_color() {
+        return couleur;
     }
 
     public Vector get_coordinate() {
@@ -50,11 +50,11 @@ public class Case {
         return coordinate;
     }
 
-    public Case(int row, int col, int joueur,String color) {
+    public Case(int row, int col, int joueur, String color) {
         x = row;
         y = col;
         joueur = 0;
-        couleur="";
+        couleur = "";
     }
 
     public void affiche() {
@@ -81,23 +81,27 @@ public class Case {
     public boolean is_highlighted() {
         return highlighted;
     }
+
     public boolean is_reachable() {
         return reachable;
     }
+
     public boolean is_thesameposition(Case tested) {
-        if(tested.get_row()==x && tested.get_col()==y){
+        if (tested.get_row() == x && tested.get_col() == y) {
             return true;
         }
         return false;
     }
-    public int get_nbMetaboCacthed(){
-      return nbMetaboCatched;
+
+    public int get_nbMetaboCacthed() {
+        return nbMetaboCatched;
     }
 
-    public void increase_nbMetaboCatched(){
-      nbMetaboCatched++;
+    public void increase_nbMetaboCatched() {
+        nbMetaboCatched++;
     }
-    public void set_nbMetaboCatched(int nbMetaboCatched){
-      nbMetaboCatched=this.nbMetaboCatched;
+
+    public void set_nbMetaboCatched(int nbMetaboCatched) {
+        nbMetaboCatched = this.nbMetaboCatched;
     }
 }
