@@ -41,9 +41,9 @@ public class GUI {
     public ImageIcon enzymeBlue = new ImageIcon("./img/enzyme_blue.png");
     public ImageIcon enzymeGreen = new ImageIcon("./img/enzyme_green.png");
     public ImageIcon enzymeRose = new ImageIcon("./img/enzyme_rose.png");
-    public Color J1= new Color(0, 183, 2);
-    public Color J2=new Color(91, 154, 255);
-    
+    public Color J1 = new Color(0, 183, 2);
+    public Color J2 = new Color(91, 154, 255);
+
     public int etape_tour = 1; //0:metabolite, 1: joueur1, joueur2,
     public int nb_tour = 1;
 
@@ -271,12 +271,12 @@ public class GUI {
     public boolean init = true;
 
     public void display() {
-    	Font font =new Font("Serif", Font.PLAIN, 20);
-        try{
+        Font font = new Font("Serif", Font.PLAIN, 20);
+        try {
             font = Font.createFont(Font.TRUETYPE_FONT, GUI.class.getResourceAsStream("ka1.ttf"));
+        } catch (Exception e) {
         }
-        catch(Exception e){}
-    	
+
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p2 = new JPanel();
         p2.setLayout(null);
@@ -284,7 +284,7 @@ public class GUI {
         JLabel titre = new JLabel();
         titre.setText("JPlusPlus");
         titre.setFont(font.deriveFont(Font.PLAIN, 45));
-	    titre.setForeground(new Color(99, 0, 119));   
+        titre.setForeground(new Color(99, 0, 119));
         titre.setBounds(10, 50, 400, 50);
 
         JLabel etape = new JLabel();
@@ -294,8 +294,8 @@ public class GUI {
         if (etape_tour == 2) {
             quijoue = "Joueur 2";
             etape.setForeground(J2);
-        }       
-        etape.setText("Au tour de: "+quijoue);
+        }
+        etape.setText("Au tour de: " + quijoue);
         etape.setFont(font.deriveFont(Font.PLAIN, 20));
         etape.setBounds(20, 150, 400, 100);
 
@@ -324,13 +324,13 @@ public class GUI {
         p2.add(joueur2);
 
         JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-       // sp.setResizeWeight(0.7);
+        // sp.setResizeWeight(0.7);
         //sp.setEnabled(false);
         sp.setDividerSize(10);
 
         sp.add(createGridPanel());
-        sp.add(p2);       
-        
+        sp.add(p2);
+
         f.add(sp, BorderLayout.CENTER);
         f.pack();
 

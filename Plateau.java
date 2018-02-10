@@ -6,8 +6,6 @@ public class Plateau {
     public static int taille_plateau = 15;
     public static int nb_metabolite = 40;
 
-
-
     public Plateau(Vector nom) {
         plateau = nom;
     }
