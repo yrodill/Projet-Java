@@ -175,12 +175,12 @@ public class Plateau {
             int row = selected.get_row();
             int col = selected.get_col();
             int move, move2, move4, move5, move7, move8;
-            move = 0;
-            move2 = 0;
-            move4 = 0;
-            move5 = 0;
-            move7 = 0;
-            move8 = 0;
+            move = -1; //initialisé à 1 pour éviter que la case 0 soit proposée sur un déplacement impossible.
+            move2 = -1;
+            move4 = -1;
+            move5 = -1;
+            move7 = -1;
+            move8 = -1;
             if (col != 0) {
                 move = row * taille_plateau - 1 + col; //gauche
                 move4 = (row - 1) * taille_plateau + col - 1; //diagonale haut gauche

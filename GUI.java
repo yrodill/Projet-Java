@@ -11,11 +11,11 @@ import java.util.List;
 
 //import javax.lang.model.util.SimpleTypeVisitor6;
 import javax.swing.*;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.JColorChooser;
+// import javax.swing.JButton;
+// import javax.swing.JFrame;
+// import javax.swing.JPanel;
+// import javax.swing.border.Border;
+// import javax.swing.JColorChooser;
 
 import javax.imageio.ImageIO;
 
@@ -43,7 +43,7 @@ public class GUI {
     public ImageIcon enzymeRose = new ImageIcon("./img/enzyme_rose.png");
     public Color J1= new Color(0, 183, 2);
     public Color J2=new Color(91, 154, 255);
-    
+
     public int etape_tour = 1; //0:metabolite, 1: joueur1, joueur2,
     public int nb_tour = 1;
 
@@ -197,6 +197,7 @@ public class GUI {
                         clicked.highlight(false);
                         unreachable();
                         click = 0;
+                        TestVictoire();
                         changer_etape(); //CHANGE LE JOUEUR
 
                     } else {
@@ -229,6 +230,19 @@ public class GUI {
             updatedisplay();
             changer_etape();
         }
+    }
+
+    public void TestVictoire(){
+      if(scoreJ1==21){
+        System.out.println("Le joueur 1 a gagné la partie !");
+        f.dispose();
+        Menu.launcher();
+
+      }
+      else if(scoreJ2==1){
+        System.out.println("Le joueur 1 a gagné la partie !");
+        Menu.launcher();
+      }
     }
 
     public JPanel createGridPanel() {
@@ -276,7 +290,7 @@ public class GUI {
             font = Font.createFont(Font.TRUETYPE_FONT, GUI.class.getResourceAsStream("ka1.ttf"));
         }
         catch(Exception e){}
-    	
+
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p2 = new JPanel();
         p2.setLayout(null);
@@ -284,7 +298,7 @@ public class GUI {
         JLabel titre = new JLabel();
         titre.setText("JPlusPlus");
         titre.setFont(font.deriveFont(Font.PLAIN, 45));
-	    titre.setForeground(new Color(99, 0, 119));   
+	    titre.setForeground(new Color(99, 0, 119));
         titre.setBounds(10, 50, 400, 50);
 
         JLabel etape = new JLabel();
@@ -294,7 +308,7 @@ public class GUI {
         if (etape_tour == 2) {
             quijoue = "Joueur 2";
             etape.setForeground(J2);
-        }       
+        }
         etape.setText("Au tour de: "+quijoue);
         etape.setFont(font.deriveFont(Font.PLAIN, 20));
         etape.setBounds(20, 150, 400, 100);
@@ -329,8 +343,8 @@ public class GUI {
         sp.setDividerSize(10);
 
         sp.add(createGridPanel());
-        sp.add(p2);       
-        
+        sp.add(p2);
+
         f.add(sp, BorderLayout.CENTER);
         f.pack();
 
@@ -341,12 +355,15 @@ public class GUI {
         init = false;
     }
 
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                Plateau.set_element();
-                new GUI().display();
+
+                Menu.launcher();
+
+
             }
         });
     }
