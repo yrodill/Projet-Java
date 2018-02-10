@@ -286,7 +286,7 @@ public class GUI {
         JLabel etape = new JLabel();
 
         String quijoue="Joueur 1";
-        etape.setText("<html>Au tour de: <font color='red'>"+quijoue+"</font></html>");
+        etape.setText("<html>Au tour de: <font color='green'>"+quijoue+"</font></html>");
         if (etape_tour==2) {
             quijoue="Joueur 2";
             etape.setText("<html>Au tour de: <font color='blue'>"+quijoue+"</font></html>");
