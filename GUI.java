@@ -197,8 +197,7 @@ public class GUI {
                         clicked.highlight(false);
                         unreachable();
                         click = 0;
-
-
+                        changer_etape(); //CHANGE LE JOUEUR
 
                     } else {
                         System.out.println("Case inaccessible!");
@@ -206,8 +205,6 @@ public class GUI {
                         unreachable();
                         click = 0;
                     }
-
-                    changer_etape(); //CHANGE LE JOUEUR
                     updatedisplay();
                 }
             }
