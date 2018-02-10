@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <notation:Diagram xmi:id="_bYa6kA0kEeid2YgFrdNzQQ" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1BSVsA0lEeiMJum4sIc-Sg" source="PapyrusHyperLink_Object" references="_0-7lQA0lEeiMJum4sIc-Sg">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1BSVsQ0lEeiMJum4sIc-Sg" key="tooltip_text"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1BSVsg0lEeiMJum4sIc-Sg" key="pageName" value="PapyrusHyperLink_Object"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1BSVsw0lEeiMJum4sIc-Sg" key="is_default_navigation" value="true"/>
+    </eAnnotations>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_bYa6kQ0kEeid2YgFrdNzQQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_bYa6kg0kEeid2YgFrdNzQQ"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_bYa6kw0kEeid2YgFrdNzQQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
+      <owner xmi:type="uml:Model" href="Projet-Java.uml#_bYUz8A0kEeid2YgFrdNzQQ"/>
+    </styles>
+    <element xmi:type="uml:Model" href="Projet-Java.uml#_bYUz8A0kEeid2YgFrdNzQQ"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_bZIFMA0kEeid2YgFrdNzQQ" type="PapyrusUMLSequenceDiagram" name="Sequence Diagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_bZIFMQ0kEeid2YgFrdNzQQ" type="Interaction_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_bZIFMg0kEeid2YgFrdNzQQ" type="Interaction_NameLabel"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_bZIFMw0kEeid2YgFrdNzQQ" type="Interaction_SubfragmentCompartment">
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bZIFNA0kEeid2YgFrdNzQQ"/>
+      </children>
+      <element xmi:type="uml:Interaction" href="Projet-Java.uml#_bZGQAA0kEeid2YgFrdNzQQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bZIFNQ0kEeid2YgFrdNzQQ"/>
+    </children>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_bZIFNg0kEeid2YgFrdNzQQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_bZIFNw0kEeid2YgFrdNzQQ"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_bZIFOA0kEeid2YgFrdNzQQ" diagramKindId="org.eclipse.papyrus.uml.diagram.sequence">
+      <owner xmi:type="uml:Model" href="Projet-Java.uml#_bYUz8A0kEeid2YgFrdNzQQ"/>
+    </styles>
+    <element xmi:type="uml:Interaction" href="Projet-Java.uml#_bZGQAA0kEeid2YgFrdNzQQ"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_0-7lQA0lEeiMJum4sIc-Sg" type="PapyrusUMLClassDiagram" name="NewClassDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_0-7lQQ0lEeiMJum4sIc-Sg" name="diagram_compatibility_version" stringValue="1.3.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_0-7lQg0lEeiMJum4sIc-Sg"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_0-7lQw0lEeiMJum4sIc-Sg" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
+      <owner xmi:type="uml:Model" href="Projet-Java.uml#_bYUz8A0kEeid2YgFrdNzQQ"/>
+    </styles>
+    <element xmi:type="uml:Model" href="Projet-Java.uml#_bYUz8A0kEeid2YgFrdNzQQ"/>
+  </notation:Diagram>
+</xmi:XMI>

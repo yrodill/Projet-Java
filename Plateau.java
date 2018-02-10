@@ -3,6 +3,11 @@ import java.util.*;
 
 public class Plateau {
     public static Vector<Case> plateau = new Vector<Case>();
+    public static int taille_plateau = 15;
+    public static int nb_metabolite = 40;
+    public static int distance_max_lipid = 3;
+    public static int distance_max_enzyme = 1;
+    public static int distance_max_metabolite = 1;
 
     public Plateau(Vector nom) {
         plateau = nom;
@@ -15,7 +20,7 @@ public class Plateau {
         randompoz.clear();
         Random randomGenerator = new Random();
         Integer x = 4 + randomGenerator.nextInt(7);
-        Integer y = randomGenerator.nextInt(15);
+        Integer y = randomGenerator.nextInt(taille_plateau);
 
         randompoz.addElement(x);
         randompoz.addElement(y);
@@ -24,7 +29,7 @@ public class Plateau {
             //  System.out.println(randompoz + "DEJA PRESENT!");
             randompoz.clear();
             x = 4 + randomGenerator.nextInt(7);
-            y = randomGenerator.nextInt(15);
+            y = randomGenerator.nextInt(taille_plateau);
 
             randompoz.addElement(x);
             randompoz.addElement(y);
@@ -69,9 +74,9 @@ public class Plateau {
 
         Collections.shuffle(couleursEnzyme);
         Collections.shuffle(couleursMetabolite);
-        for (int row = 0; row < 15; row++) {
-            for (int col = 0; col < 15; col++) {
-                int index = (row * 15 + col);
+        for (int row = 0; row < taille_plateau; row++) {
+            for (int col = 0; col < taille_plateau; col++) {
+                int index = (row * taille_plateau + col);
                 //System.out.println(index);
                 if (row == 0 && (col % 2 == 0)) {
                     int joueur = 1;
@@ -81,7 +86,7 @@ public class Plateau {
                     enzyme.set_joueur(joueur);
                     String quelcouleur = enzyme.get_color();
                     plateau.add(index, enzyme);
-                } else if (row == 14 && (col % 2 == 0)) {
+                } else if (row == (taille_plateau - 1) && (col % 2 == 0)) {
                     int joueur = 2;
                     Case enzyme = new Enzyme(row, col, joueur, color);
                     enzyme.set_color(couleursEnzyme.get(pickColor2));
@@ -114,12 +119,12 @@ public class Plateau {
                 }
             }
         }
-        for (int nbmetabolite = 0; nbmetabolite < 40; nbmetabolite++) {
+        for (int nbmetabolite = 0; nbmetabolite < nb_metabolite; nbmetabolite++) {
             Vector<Integer> randomcoord = new Vector();
             randomcoord = RandomPlace();
             Integer new_row = randomcoord.get(0);
             Integer new_col = randomcoord.get(1);
-            int index = new_row * 15 + new_col;
+            int index = new_row * taille_plateau + new_col;
             int joueur = 0;
             Case metabolite = new Metabolite(new_row, new_col, joueur, color);
             metabolite.set_color(couleursMetabolite.get(pickColor3));
@@ -129,7 +134,7 @@ public class Plateau {
     }
 
     public static boolean test_move(int move) {
-        if (move >= 0 && move < 225) {
+        if (move >= 0 && move < taille_plateau * taille_plateau) {
             return true;
         }
         return false;
@@ -144,13 +149,13 @@ public class Plateau {
             int col = selected.get_col();
             int possible_case = 0;
             //System.out.println(row + "," + col);
-            for (int i = 1; i <= 3; i++) {
+            for (int i = 1; i <= distance_max_lipid; i++) {
                 if (selected.get_Player() == 1) {
                     possible_case = row + i;
                 } else if (selected.get_Player() == 2) {
                     possible_case = row - i;
                 }
-                int index = possible_case * 15 + col;
+                int index = possible_case * taille_plateau + col;
                 String type = Plateau.plateau.get(index).get_type();
                 if (type.equals(" ")) {
                     Plateau.plateau.get(index).set_reachable(true);
@@ -178,18 +183,18 @@ public class Plateau {
             move7 = 0;
             move8 = 0;
             if (col != 0) {
-                move = row * 15 - 1 + col; //gauche
-                move4 = (row - 1) * 15 + col - 1; //diagonale haut gauche
-                move7 = (row + 1) * 15 + col - 1; // diagonale bas gauche
+                move = row * taille_plateau - 1 + col; //gauche
+                move4 = (row - 1) * taille_plateau + col - 1; //diagonale haut gauche
+                move7 = (row + 1) * taille_plateau + col - 1; // diagonale bas gauche
             }
             if (col != 14) {
-                move2 = row * 15 + 1 + col; //droite
-                move5 = (row - 1) * 15 + col + 1; // diagonale haut droite
-                move8 = (row + 1) * 15 + col + 1; //diagonale bas droite
+                move2 = row * taille_plateau + 1 + col; //droite
+                move5 = (row - 1) * taille_plateau + col + 1; // diagonale haut droite
+                move8 = (row + 1) * taille_plateau + col + 1; //diagonale bas droite
 
             }
-            int move3 = (row - 1) * 15 + col; //haut
-            int move6 = (row + 1) * 15 + col; // bas
+            int move3 = (row - 1) * taille_plateau + col; //haut
+            int move6 = (row + 1) * taille_plateau + col; // bas
             if (test_move(move)) {
                 move_possible_enzyme.add(move);
             }
@@ -226,6 +231,22 @@ public class Plateau {
         }
     }
 
+    
+    public static void move_all_metabolite() {
+    Vector<Integer> randomcasepicker = new Vector();
+    for (int nbdecase = 0; nbdecase < plateau.size(); nbdecase++) {
+        randomcasepicker.add(nbdecase, nbdecase);
+    }
+    Collections.shuffle(randomcasepicker);
+    for (int j = 0; j < randomcasepicker.size(); j++) {
+        Case metaboSelected = plateau.get(randomcasepicker.get(j));
+        if (metaboSelected instanceof Metabolite) {
+            move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
+        }
+
+    }
+    }
+    
     public static void move_metabolite(Case metaboSelected) {
 
         Vector<Vector> possible_move = new Vector();
@@ -235,11 +256,11 @@ public class Plateau {
 
             int row = selected.get_row();
             int col = selected.get_col();
-            int index = row * 15 + col;
+            int index = row * taille_plateau + col;
 
-            for (int i = 1; i < 4; i++) {
+            for (int i = 1; i <= distance_max_metabolite; i++) {
                 int possible_col = col + i; //droite
-                int possible_index = row * 15 + possible_col;
+                int possible_index = row * taille_plateau + possible_col;
                 if (bornee(possible_col)) {
                     if (!plateau.get(possible_index).get_type().equals(" ")) {
                         break;
@@ -251,9 +272,9 @@ public class Plateau {
                 }
             }
 
-            for (int i = 1; i < 4; i++) {
+            for (int i = 1; i <= distance_max_metabolite; i++) {
                 int possible_col = col - i; //gauche
-                int possible_index = row * 15 + possible_col;
+                int possible_index = row * taille_plateau + possible_col;
                 if (bornee(possible_col)) {
                     if (!plateau.get(possible_index).get_type().equals(" ")) {
                         break;
@@ -264,9 +285,9 @@ public class Plateau {
                     possible_move.add(possible_coordinate);
                 }
             }
-            for (int i = 1; i < 4; i++) {
+            for (int i = 1; i <= distance_max_metabolite; i++) {
                 int possible_row = row + i; //bas
-                int possible_index = possible_row * 15 + col;
+                int possible_index = possible_row * taille_plateau + col;
                 if (bornee(possible_row)) {
                     if (!plateau.get(possible_index).get_type().equals(" ")) {
                         break;
@@ -277,9 +298,9 @@ public class Plateau {
                     possible_move.add(possible_coordinate);
                 }
             }
-            for (int i = 1; i < 4; i++) {
+            for (int i = 1; i <= distance_max_metabolite; i++) {
                 int possible_row = row - i; //haut
-                int possible_index = possible_row * 15 + col;
+                int possible_index = possible_row * taille_plateau + col;
                 if (bornee(possible_row)) {
                     if (!plateau.get(possible_index).get_type().equals(" ")) {
                         break;
@@ -300,7 +321,7 @@ public class Plateau {
                 Vector<Integer> coord_choisie = possible_move.get(randomindex);
                 Integer row_choisie = coord_choisie.get(0);
                 Integer col_choisie = coord_choisie.get(1);
-                Integer index_choisie = row_choisie * 15 + col_choisie;
+                Integer index_choisie = row_choisie * taille_plateau + col_choisie;
                 System.out.println("\nrow_choosed: " + row_choisie + " col_choosed: " + col_choisie + "\n");
                 selected.set_x(row_choisie);
                 selected.set_y(col_choisie);
@@ -313,7 +334,7 @@ public class Plateau {
     }
 
     public static boolean bornee(int coord_xy) {
-        if (coord_xy < 15 && coord_xy > -1) {
+        if (coord_xy < taille_plateau && coord_xy > -1) {
             return true;
         }
         return false;

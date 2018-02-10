@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_bYUz8A0kEeid2YgFrdNzQQ" name="Projet-Java">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_bfBR0A0kEeid2YgFrdNzQQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_bZGQAA0kEeid2YgFrdNzQQ" name="Interaction1"/>
+</uml:Model>

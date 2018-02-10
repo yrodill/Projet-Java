@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,11 +20,12 @@ import javax.swing.JColorChooser;
 import javax.imageio.ImageIO;
 
 /**
-* https://stackoverflow.com/questions/7702697/how-to-get-x-and-y-index-of-element-inside-gridlayout
- */
+  Classe de rendu graphique
+  @author Pierre JACQUET & Benoit Bothorel
+  @version 1
+**/
 
 public class GUI {
-
     private static final int N = 15;
     public static int scoreJ1;
     public static int scoreJ2;
@@ -42,6 +44,9 @@ public class GUI {
     public ImageIcon redc = new ImageIcon(
             new ImageIcon("./circlered.png").getImage().getScaledInstance(52, 52, Image.SCALE_DEFAULT));
 
+    public int etape_tour=1; //0:metabolite, 1: joueur1, joueur2,
+    public int nb_tour=0;
+    
     private JButton getGridButton(int r, int c) {
         int index = r * N + c;
         return list.get(index);
@@ -84,6 +89,7 @@ public class GUI {
         }
         if (type.equals(" ")) {
             b.setText(row + "," + col);
+            b.setFont(new Font("Arial", Font.PLAIN, 9));
         }
         if (type.equals("E") && pieceaposer.get_color().equals("Rouge")) {
             b.setIcon(enzymeRed);
@@ -113,7 +119,6 @@ public class GUI {
                 //   Iterator<Case> cases_selected = Plateau.plateau.iterator();
                 //   while (cases_selected.hasNext()) {
 
-
                 //   }
 
                 click++;
@@ -127,7 +132,15 @@ public class GUI {
                     int joueur = clicked.get_Player();
                     System.out.println("Joueur =" + joueur);
                     clicked.highlight(true);
-                    if (clicked.get_type().equals("L")) {
+                    
+                    //VERIFICATION DU JOUEUR !
+                    if (joueur!=etape_tour) {
+                        System.out.println("Ce pion n'est pas à vous !");
+                        clicked.highlight(false);
+                        click = 0;
+                    }
+                    
+                    else if (clicked.get_type().equals("L")) {
                         Plateau.move_lipides(clicked);
                     } else if (clicked.get_type().equals("E")) {
                         Plateau.move_enzyme(clicked);
@@ -187,27 +200,6 @@ public class GUI {
 
 
 
-
-
-
-                        Vector<Integer> randomcasepicker = new Vector();
-                        for (int nbdecase = 0; nbdecase < Plateau.plateau.size(); nbdecase++) {
-                            randomcasepicker.add(nbdecase, nbdecase);
-                        }
-                        Collections.shuffle(randomcasepicker);
-                        for (int j = 0; j < randomcasepicker.size(); j++) {
-                            Case metaboSelected = Plateau.plateau.get(randomcasepicker.get(j));
-                            if (metaboSelected instanceof Metabolite) {
-                                Plateau.move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
-                            }
-        
-                        }
-
-
-
-
-
-
                     } else {
                         System.out.println("Case inaccessible!");
                         clicked.highlight(false);
@@ -215,6 +207,7 @@ public class GUI {
                         click = 0;
                     }
 
+                    changer_etape(); //CHANGE LE JOUEUR
                     updatedisplay();
                 }
             }
@@ -228,6 +221,19 @@ public class GUI {
         }
     }
 
+    public void changer_etape() {
+    	etape_tour++;
+    	if (etape_tour>2) {
+    		etape_tour=0;
+    		nb_tour++;
+    	}
+    	if (etape_tour==0) {
+    		Plateau.move_all_metabolite();
+    		updatedisplay();
+    		changer_etape();
+    	}
+    }
+    
     public JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
         p.setPreferredSize(new Dimension(810, 810));
@@ -268,17 +274,7 @@ public class GUI {
     public boolean init = true;
 
     public void display() {
-
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //f.setResizable(false);
-        //f.add(createGridPanel());
-        //ImageIcon imageIcon = new ImageIcon("./background.jpg"); // load the image to a imageIcon
-        //Image image = imageIcon.getImage(); // transform it
-        //Image newimg = image.getScaledInstance(800, 800,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        //imageIcon = new ImageIcon(newimg);
-        //JLabel background = new JLabel(imageIcon);
-        //f.add(background);
-
         JPanel p2 = new JPanel();
         p2.setLayout(null);
         p2.setPreferredSize(new Dimension(300, 800));
@@ -286,18 +282,30 @@ public class GUI {
         titre.setText("JPlusPlus");
         titre.setFont(new Font("Serif", Font.PLAIN, 44));
         titre.setBounds(20, 50, 300, 50);
+        
+        JLabel etape = new JLabel();
+
+        String quijoue="Joueur 1";
+        etape.setText("<html>Au tour de: <font color='red'>"+quijoue+"</font></html>");
+        if (etape_tour==2) {
+            quijoue="Joueur 2";
+            etape.setText("<html>Au tour de: <font color='blue'>"+quijoue+"</font></html>");
+        }
+        etape.setFont(new Font("Serif", Font.PLAIN, 20));
+        etape.setBounds(20, 150, 200, 100);
 
         JLabel joueur1 = new JLabel();
-        joueur1.setText("Score joueur 1: " + scoreJ1);
+        joueur1.setText("Score J1   " + scoreJ1);
         joueur1.setFont(new Font("Serif", Font.PLAIN, 20));
-        joueur1.setBounds(20, 150, 200, 100);
+        joueur1.setBounds(20, 250, 200, 100);
 
         JLabel joueur2 = new JLabel();
-        joueur2.setText("Score joueur 2: " + scoreJ2);
+        joueur2.setText("Score J2   " + scoreJ2);
         joueur2.setFont(new Font("Serif", Font.PLAIN, 20));
-        joueur2.setBounds(20, 250, 200, 100);
+        joueur2.setBounds(20, 350, 200, 100);
 
         p2.add(titre);
+        p2.add(etape);
         p2.add(joueur1);
         p2.add(joueur2);
 
