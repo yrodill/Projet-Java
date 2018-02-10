@@ -32,18 +32,16 @@ public class GUI {
     private final List<JButton> list = new ArrayList<JButton>();
     public int click = 0;
     public Case clicked;
-    public ImageIcon mitoRed = new ImageIcon("./mito_red.png");
-    public ImageIcon mitoBlue = new ImageIcon("./mito_blue.png");
-    public ImageIcon mitoGreen = new ImageIcon("./mito_green.png");
-    public ImageIcon mitoRose = new ImageIcon("./mito_rose.png");
-    public ImageIcon lipid = new ImageIcon("./lipid.png");
-    public ImageIcon enzymeRed = new ImageIcon("./enzyme_red.png");
-    public ImageIcon enzymeBlue = new ImageIcon("./enzyme_blue.png");
-    public ImageIcon enzymeGreen = new ImageIcon("./enzyme_green.png");
-    public ImageIcon enzymeRose = new ImageIcon("./enzyme_rose.png");
-    public ImageIcon redc = new ImageIcon(
-            new ImageIcon("./circlered.png").getImage().getScaledInstance(52, 52, Image.SCALE_DEFAULT));
-
+    public ImageIcon mitoRed = new ImageIcon("./img/mito_red.png");
+    public ImageIcon mitoBlue = new ImageIcon("./img/mito_blue.png");
+    public ImageIcon mitoGreen = new ImageIcon("./img/mito_green.png");
+    public ImageIcon mitoRose = new ImageIcon("./img/mito_rose.png");
+    public ImageIcon lipid = new ImageIcon("./img/lipid.png");
+    public ImageIcon enzymeRed = new ImageIcon("./img/enzyme_red.png");
+    public ImageIcon enzymeBlue = new ImageIcon("./img/enzyme_blue.png");
+    public ImageIcon enzymeGreen = new ImageIcon("./img/enzyme_green.png");
+    public ImageIcon enzymeRose = new ImageIcon("./img/enzyme_rose.png");
+    
     public int etape_tour = 1; //0:metabolite, 1: joueur1, joueur2,
     public int nb_tour = 1;
 
