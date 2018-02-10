@@ -237,12 +237,12 @@ public class GUI {
       if(scoreJ1==21){
         System.out.println("Le joueur 1 a gagné la partie !");
         f.dispose();
-        Menu.launcher();
+        new Menu();
 
       }
       else if(scoreJ2==1){
         System.out.println("Le joueur 1 a gagné la partie !");
-        Menu.launcher();
+        new Menu();
       }
     }
 

@@ -1,4 +1,65 @@
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.EmptyBorder;
+
+public class Menu {
+
+    public static void main(String[] args) {
+        new Menu();
+    }
+
+    public Menu() {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame frame = new JFrame("Menu");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.add(new MenuPane());
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }
+        });
+    }
+
+    public class MenuPane extends JPanel {
+
+        public MenuPane() {
+            setBorder(new EmptyBorder(50, 50, 50, 50));
+            setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            JButton jouer=new JButton("Jouer une nouvelle partie");
+            jouer.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                	GUI.debut_partie();
+                }
+            });
+            add(jouer, gbc);
+            add(new JButton("Paramètres"), gbc);
+            add(new JButton("Quitter"), gbc);
+        }
+
+    }
+
+}
+
+
+/*import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.ImageObserver;
@@ -25,7 +86,7 @@ public class Menu{
 
     JFrame window = new JFrame("Menu");
     JButton b1 = new JButton();
-    b1.setSize(400,400);
+    b1.setSize(500,400);
    b1.setVisible(true);
    b1.setText("Lancer une partie");
     JPanel p = new JPanel();
@@ -71,3 +132,4 @@ public class Menu{
   }
   
 }
+*/
