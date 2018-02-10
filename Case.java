@@ -53,9 +53,26 @@ public class Case {
     public Case(int row, int col, int joueur, String color) {
         x = row;
         y = col;
-        joueur = 0;
+        player = joueur;
+        couleur = color;
+    }
+    
+    public Case(int row, int col, int joueur) {
+        x = row;
+        y = col;
+        player = joueur;
         couleur = "";
     }
+    
+    public Case(int row, int col) {
+        x = row;
+        y = col;
+        player = 0;
+        couleur = "";
+    }
+    
+   
+
 
     public void affiche() {
         System.out.println("X:" + x + ", Y: " + y);

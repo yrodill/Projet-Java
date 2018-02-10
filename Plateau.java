@@ -78,41 +78,41 @@ public class Plateau {
                 int index = (row * taille_plateau + col);
                 //System.out.println(index);
                 if (row == 0 && (col % 2 == 0)) {
-                    int joueur = 1;
-                    Case enzyme = new Enzyme(row, col, joueur, color);
-                    enzyme.set_color(couleursEnzyme.get(pickColor));
+                    //int joueur = 1;
+                    Case enzyme = new Enzyme(row, col, 1, couleursEnzyme.get(pickColor));
+                    //enzyme.set_color(couleursEnzyme.get(pickColor));
                     pickColor++;
-                    enzyme.set_joueur(joueur);
+                    //enzyme.set_joueur(joueur);
                     String quelcouleur = enzyme.get_color();
                     plateau.add(index, enzyme);
                 } else if (row == (taille_plateau - 1) && (col % 2 == 0)) {
-                    int joueur = 2;
-                    Case enzyme = new Enzyme(row, col, joueur, color);
+                    //int joueur = 2;
+                    Case enzyme = new Enzyme(row, col, 2, couleursEnzyme.get(pickColor2));
                     enzyme.set_color(couleursEnzyme.get(pickColor2));
                     pickColor2++;
-                    enzyme.set_joueur(joueur);
+                    //enzyme.set_joueur(joueur);
                     plateau.add(index, enzyme);
                 }
 
                 else if ((Arrays.asList(1).contains(row) && Arrays.asList(2, 4, 6, 8, 10, 12).contains(col))
                         || (Arrays.asList(2).contains(row) && Arrays.asList(1, 3, 5, 7, 9, 11, 13).contains(col))
                         || (row == 3 && Arrays.asList(0, 2, 4, 6, 8, 10, 12).contains(col))) {
-                    int joueur = 1;
-                    Case lipid = new Lipid(row, col, joueur, color);
-                    lipid.set_joueur(joueur);
+                    //int joueur = 1;
+                    Case lipid = new Lipid(row, col, 1);
+                    //lipid.set_joueur(joueur);
                     plateau.add(index, lipid);
                 } else if ((Arrays.asList(13).contains(row) && Arrays.asList(2, 4, 6, 8, 10, 12).contains(col))
                         || (Arrays.asList(12).contains(row) && Arrays.asList(1, 3, 5, 7, 9, 11, 13).contains(col))
                         || (row == 11 && Arrays.asList(2, 4, 6, 8, 10, 12, 14).contains(col))) {
-                    int joueur = 2;
-                    Case lipid = new Lipid(row, col, joueur, color);
-                    lipid.set_joueur(joueur);
+                    //int joueur = 2;
+                    Case lipid = new Lipid(row, col, 2);
+                    //lipid.set_joueur(joueur);
                     plateau.add(index, lipid);
                 }
 
                 else {
                     int joueur = 0;
-                    Case vide = new Case(row, col, joueur, color);
+                    Case vide = new Case(row, col);
                     vide.set_joueur(joueur);
                     plateau.add(index, vide);
                 }
@@ -124,9 +124,9 @@ public class Plateau {
             Integer new_row = randomcoord.get(0);
             Integer new_col = randomcoord.get(1);
             int index = new_row * taille_plateau + new_col;
-            int joueur = 0;
-            Case metabolite = new Metabolite(new_row, new_col, joueur, color);
-            metabolite.set_color(couleursMetabolite.get(pickColor3));
+            //int joueur = 0;
+            Case metabolite = new Metabolite(new_row, new_col, 0, couleursMetabolite.get(pickColor3));
+            //metabolite.set_color(couleursMetabolite.get(pickColor3));
             pickColor3++;
             plateau.set(index, metabolite);
         }
@@ -323,7 +323,7 @@ public class Plateau {
                 System.out.println("\nrow_choosed: " + row_choisie + " col_choosed: " + col_choisie + "\n");
                 selected.set_x(row_choisie);
                 selected.set_y(col_choisie);
-                Case vide = new Case(row, col, 0, "blanc");
+                Case vide = new Case(row, col);
                 plateau.set(index, vide);
                 plateau.set(index_choisie, selected);
             }

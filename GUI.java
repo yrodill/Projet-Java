@@ -159,10 +159,10 @@ public class GUI {
                         int old_row = clicked.get_row();
                         int old_col = clicked.get_col();
                         int old_index = (old_row * 15 + old_col);
-                        int joueur = clicked.get_Player();
-                        String color = clicked.get_color();
-                        System.out.println("Joueur =" + joueur);
-                        Case vide = new Case(old_row, old_col, joueur, color);
+                        //int joueur = clicked.get_Player();
+                        //String color = clicked.get_color();
+                        //System.out.println("Joueur =" + joueur);
+                        Case vide = new Case(old_row, old_col);
 
                         int target_row = target.get_row();
                         int target_col = target.get_col();
