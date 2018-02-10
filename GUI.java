@@ -11,11 +11,11 @@ import java.util.List;
 
 //import javax.lang.model.util.SimpleTypeVisitor6;
 import javax.swing.*;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.JColorChooser;
+// import javax.swing.JButton;
+// import javax.swing.JFrame;
+// import javax.swing.JPanel;
+// import javax.swing.border.Border;
+// import javax.swing.JColorChooser;
 
 import javax.imageio.ImageIO;
 
@@ -41,8 +41,13 @@ public class GUI {
     public ImageIcon enzymeBlue = new ImageIcon("./img/enzyme_blue.png");
     public ImageIcon enzymeGreen = new ImageIcon("./img/enzyme_green.png");
     public ImageIcon enzymeRose = new ImageIcon("./img/enzyme_rose.png");
+<<<<<<< HEAD
     public Color J1 = new Color(0, 183, 2);
     public Color J2 = new Color(91, 154, 255);
+=======
+    public Color J1= new Color(0, 183, 2);
+    public Color J2=new Color(91, 154, 255);
+>>>>>>> cbd5019c1e2c542788658404aceb6a26c1c24b1c
 
     public int etape_tour = 1; //0:metabolite, 1: joueur1, joueur2,
     public int nb_tour = 1;
@@ -197,6 +202,7 @@ public class GUI {
                         clicked.highlight(false);
                         unreachable();
                         click = 0;
+                        TestVictoire();
                         changer_etape(); //CHANGE LE JOUEUR
 
                     } else {
@@ -229,6 +235,19 @@ public class GUI {
             updatedisplay();
             changer_etape();
         }
+    }
+
+    public void TestVictoire(){
+      if(scoreJ1==21){
+        System.out.println("Le joueur 1 a gagné la partie !");
+        f.dispose();
+        Menu.launcher();
+
+      }
+      else if(scoreJ2==1){
+        System.out.println("Le joueur 1 a gagné la partie !");
+        Menu.launcher();
+      }
     }
 
     public JPanel createGridPanel() {
@@ -276,6 +295,10 @@ public class GUI {
             font = Font.createFont(Font.TRUETYPE_FONT, GUI.class.getResourceAsStream("ka1.ttf"));
         } catch (Exception e) {
         }
+<<<<<<< HEAD
+=======
+        catch(Exception e){}
+>>>>>>> cbd5019c1e2c542788658404aceb6a26c1c24b1c
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p2 = new JPanel();
@@ -284,7 +307,11 @@ public class GUI {
         JLabel titre = new JLabel();
         titre.setText("JPlusPlus");
         titre.setFont(font.deriveFont(Font.PLAIN, 45));
+<<<<<<< HEAD
         titre.setForeground(new Color(99, 0, 119));
+=======
+	    titre.setForeground(new Color(99, 0, 119));
+>>>>>>> cbd5019c1e2c542788658404aceb6a26c1c24b1c
         titre.setBounds(10, 50, 400, 50);
 
         JLabel etape = new JLabel();
@@ -295,7 +322,11 @@ public class GUI {
             quijoue = "Joueur 2";
             etape.setForeground(J2);
         }
+<<<<<<< HEAD
         etape.setText("Au tour de: " + quijoue);
+=======
+        etape.setText("Au tour de: "+quijoue);
+>>>>>>> cbd5019c1e2c542788658404aceb6a26c1c24b1c
         etape.setFont(font.deriveFont(Font.PLAIN, 20));
         etape.setBounds(20, 150, 400, 100);
 
@@ -341,12 +372,15 @@ public class GUI {
         init = false;
     }
 
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                Plateau.set_element();
-                new GUI().display();
+
+                Menu.launcher();
+
+
             }
         });
     }
