@@ -45,7 +45,7 @@ public class GUI {
             new ImageIcon("./circlered.png").getImage().getScaledInstance(52, 52, Image.SCALE_DEFAULT));
 
     public int etape_tour=1; //0:metabolite, 1: joueur1, joueur2,
-    public int nb_tour=0;
+    public int nb_tour=1;
     
     private JButton getGridButton(int r, int c) {
         int index = r * N + c;
@@ -88,8 +88,8 @@ public class GUI {
             b.setIcon(lipid);
         }
         if (type.equals(" ")) {
-            b.setText(row + "," + col);
-            b.setFont(new Font("Arial", Font.PLAIN, 9));
+           // b.setText(row + "," + col);
+           // b.setFont(new Font("Arial", Font.PLAIN, 9));
         }
         if (type.equals("E") && pieceaposer.get_color().equals("Rouge")) {
             b.setIcon(enzymeRed);
@@ -294,18 +294,26 @@ public class GUI {
         etape.setFont(new Font("Serif", Font.PLAIN, 20));
         etape.setBounds(20, 150, 200, 100);
 
+        JLabel numero_tour = new JLabel();
+        numero_tour.setText("Tour n°" + nb_tour);
+        numero_tour.setFont(new Font("Serif", Font.PLAIN, 20));
+        numero_tour.setBounds(20, 200, 200, 100);
+
+        
+        
         JLabel joueur1 = new JLabel();
         joueur1.setText("Score J1   " + scoreJ1);
         joueur1.setFont(new Font("Serif", Font.PLAIN, 20));
-        joueur1.setBounds(20, 250, 200, 100);
+        joueur1.setBounds(20, 350, 200, 100);
 
         JLabel joueur2 = new JLabel();
         joueur2.setText("Score J2   " + scoreJ2);
         joueur2.setFont(new Font("Serif", Font.PLAIN, 20));
-        joueur2.setBounds(20, 350, 200, 100);
+        joueur2.setBounds(20, 400, 200, 100);
 
         p2.add(titre);
         p2.add(etape);
+        p2.add(numero_tour);
         p2.add(joueur1);
         p2.add(joueur2);
 
