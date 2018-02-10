@@ -41,6 +41,8 @@ public class GUI {
     public ImageIcon enzymeBlue = new ImageIcon("./img/enzyme_blue.png");
     public ImageIcon enzymeGreen = new ImageIcon("./img/enzyme_green.png");
     public ImageIcon enzymeRose = new ImageIcon("./img/enzyme_rose.png");
+    public Color J1= new Color(110, 186, 29);
+    public Color J2=new Color(145, 147, 255);
     
     public int etape_tour = 1; //0:metabolite, 1: joueur1, joueur2,
     public int nb_tour = 1;
@@ -61,13 +63,13 @@ public class GUI {
         b = new JButton();
 
         if (pieceaposer.get_Player() == 1) {
-            b.setBackground(new Color(110, 186, 29));
+            b.setBackground(J1);
             b.setOpaque(true);
             // b.setContentAreaFilled(false);
             // b.setHorizontalAlignment(SwingConstants.CENTER);
         }
         if (pieceaposer.get_Player() == 2) {
-            b.setBackground(new Color(145, 147, 255));
+            b.setBackground(J2);
             b.setOpaque(true);
         }
         if (type.equals("M") && pieceaposer.get_color().equals("Rouge")) {
@@ -269,39 +271,46 @@ public class GUI {
     public boolean init = true;
 
     public void display() {
+    	Font font =new Font("Serif", Font.PLAIN, 20);
+        try{
+            font = Font.createFont(Font.TRUETYPE_FONT, GUI.class.getResourceAsStream("ka1.ttf"));
+        }
+        catch(Exception e){}
+    	
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p2 = new JPanel();
         p2.setLayout(null);
-        p2.setPreferredSize(new Dimension(300, 800));
+        p2.setPreferredSize(new Dimension(400, 800));
         JLabel titre = new JLabel();
         titre.setText("JPlusPlus");
-        titre.setFont(new Font("Serif", Font.PLAIN, 44));
-        titre.setBounds(20, 50, 300, 50);
+        titre.setFont(font.deriveFont(Font.PLAIN, 35));
+        titre.setBounds(10, 50, 300, 50);
 
         JLabel etape = new JLabel();
 
         String quijoue = "Joueur 1";
-        etape.setText("<html>Au tour de: <font color='green'>" + quijoue + "</font></html>");
+        etape.setForeground(J1);
         if (etape_tour == 2) {
             quijoue = "Joueur 2";
-            etape.setText("<html>Au tour de: <font color='blue'>" + quijoue + "</font></html>");
-        }
-        etape.setFont(new Font("Serif", Font.PLAIN, 20));
-        etape.setBounds(20, 150, 200, 100);
+            etape.setForeground(J2);
+        }       
+        etape.setText("Au tour de: "+quijoue);
+        etape.setFont(font.deriveFont(Font.PLAIN, 20));
+        etape.setBounds(20, 150, 400, 100);
 
         JLabel numero_tour = new JLabel();
         numero_tour.setText("Tour n°" + nb_tour);
-        numero_tour.setFont(new Font("Serif", Font.PLAIN, 20));
+        numero_tour.setFont(font.deriveFont(Font.PLAIN, 20));
         numero_tour.setBounds(20, 200, 200, 100);
 
         JLabel joueur1 = new JLabel();
         joueur1.setText("Score J1   " + scoreJ1);
-        joueur1.setFont(new Font("Serif", Font.PLAIN, 20));
+        joueur1.setFont(font.deriveFont(Font.PLAIN, 20));
         joueur1.setBounds(20, 350, 200, 100);
 
         JLabel joueur2 = new JLabel();
         joueur2.setText("Score J2   " + scoreJ2);
-        joueur2.setFont(new Font("Serif", Font.PLAIN, 20));
+        joueur2.setFont(font.deriveFont(Font.PLAIN, 20));
         joueur2.setBounds(20, 400, 200, 100);
 
         p2.add(titre);
@@ -311,12 +320,13 @@ public class GUI {
         p2.add(joueur2);
 
         JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        sp.setResizeWeight(0.7);
-        sp.setEnabled(false);
+       // sp.setResizeWeight(0.7);
+        //sp.setEnabled(false);
         sp.setDividerSize(10);
 
         sp.add(createGridPanel());
-        sp.add(p2);
+        sp.add(p2);       
+        
         f.add(sp, BorderLayout.CENTER);
         f.pack();
 
