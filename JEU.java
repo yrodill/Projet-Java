@@ -22,6 +22,7 @@ import javax.swing.JSplitPane;
 **/
 
 public class JEU {
+    /*Variables globales*/
     private static final int N = 15;
     public static int scoreJ1;
     public static int scoreJ2;
@@ -50,6 +51,10 @@ public class JEU {
         return list.get(index);
     }
 
+    /*fonction permettant de créer les boutons (cases du plateau) et d'y assigner les images
+    en fonction de la pièce qui est posée sur la case.
+    la fonction contient aussi les inétractions possibles avec les boutons créés.
+    Elle renvoie le bouton créé.*/
     private JButton createGridButton(final int row, final int col) {
         final JButton b;
         int index = (row * 15 + col);
@@ -95,14 +100,15 @@ public class JEU {
         if (type.equals("E") && pieceaposer.get_color().equals("Rose")) {
             b.setIcon(enzymeRose);
         }
-        if (highlighted) {
+        if (highlighted) { //modification du background lorsque la pièce est sélectionnée
             b.setBackground(Color.GREEN);
             b.setOpaque(true);
         }
-        if (reachable) {
+        if (reachable) { //affichage des cases atteignables par la pièce
             b.setBackground(Color.ORANGE);
             b.setOpaque(true);
         }
+        /*définition des actions possibles lors d'un clic sur un bouton*/
         b.addActionListener(new ActionListener() {
 
             @Override
@@ -160,7 +166,7 @@ public class JEU {
                         }
                         if (clicked instanceof Enzyme) {
                             Enzyme clicked2 = (Enzyme) clicked;
-
+                            /*modification des scores lorsque les joueurs "mangent" les métabolites*/
                             if (type.equals("M")
                                     && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
                                 if (clicked.get_Player() == 1) {
@@ -180,7 +186,9 @@ public class JEU {
                                                 "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
                                     }
                                 }
-                                clicked2.increase_nbMetaboCatched();
+                                if(clicked2.get_nbMetaboCacthed() <5){ //le nombre de métabolites capturés par l'enzyme n'augmente plus lorsque qu'il y en a déjà 5.
+                                  clicked2.increase_nbMetaboCatched();
+                                }
                                 int nbMetaboCatched = clicked2.get_nbMetaboCacthed();
                                 System.out.println("Nbmétabo dans cette enzyme : " + nbMetaboCatched);
                             }
@@ -214,7 +222,8 @@ public class JEU {
             Plateau.plateau.get(i).set_reachable(false);
         }
     }
-
+    /*fonction permettant de déterminer à quel moment d'un
+    tour on se situe dans la partie*/
     public void changer_etape() {
         etape_tour++;
         if (etape_tour > 2) {
@@ -227,7 +236,10 @@ public class JEU {
             changer_etape();
         }
     }
-
+    /*fonction permettant de tester si un des joueurs a atteind le score
+    nécessaire pour remporter la partie.
+    Le score nécessaire s'adapte en fonction des actions des joueurs.
+    Si un joueur gagne on retourne au menu principal.*/
     public void TestVictoire() {
         int scoremax = actual_metabo / 2 + 1;
         System.out.println("Nombre métabos max pour gagner :" + scoremax);
@@ -241,6 +253,9 @@ public class JEU {
         }
     }
 
+    /*fonction permettant de créer le plateau de jeu
+    avec ses boutons placés en faisant appel à la
+    fonction createGridButton.*/
     public JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
         p.setPreferredSize(new Dimension(810, 810));
@@ -280,6 +295,8 @@ public class JEU {
 
     public boolean init = true;
 
+    /*affichage du plateau et de la partie contenant les scores des
+    joueurs, le tour actuel, et quel joueur doit bouger une pièce*/
     public void display() {
         Font font = new Font("Serif", Font.PLAIN, 20);
         try {

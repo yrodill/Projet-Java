@@ -24,7 +24,9 @@ public class Plateau {
     public static void set_nb_metabol(int nombre) {
         nb_metabolite = nombre;
     }
-
+    /*création de coordonnées aléatoires stockées dans un vecteur
+    pour positionner les métabolites sur le plateau de jeu.
+    La fonction renvoie un vecteur contenant des listes de coordonnées.*/
     public static Vector<Integer> RandomPlace() {
         Vector<Integer> randompoz = new Vector();
         randompoz.clear();
@@ -55,7 +57,8 @@ public class Plateau {
             System.out.print(vEnum.nextElement() + " ");
         }
     }
-
+    /*fonction permettant de créer les éléments au début d'une partie et de les
+    positionner sur le plateau selon les règles décrites dans le sujet.*/
     public static void set_element() {
         String color = "";
         int pickColor = 0;
@@ -125,12 +128,15 @@ public class Plateau {
         }
     }
 
+    /*fonction permettant de tester les mouvements et
+    faire en sorte qu'il ne sorte pas des limites physiques du plateau de jeu*/
     public static boolean test_move(int move) {
         if (move >= 0 && move < taille_plateau * taille_plateau) {
             return true;
         }
         return false;
     }
+
 
     public static void move_lipides(Case clicked) {
 
@@ -167,7 +173,7 @@ public class Plateau {
             int row = selected.get_row();
             int col = selected.get_col();
             int move, move2, move4, move5, move7, move8;
-            move = -1; //initialisé à 1 pour éviter que la case 0 soit proposée sur un déplacement impossible.
+            move = -1; //initialisé à -1 pour éviter que la case 0 soit proposée sur un déplacement impossible.
             move2 = -1;
             move4 = -1;
             move5 = -1;
@@ -221,7 +227,9 @@ public class Plateau {
             }
         }
     }
-
+    /*Fonction permettant de créer un vecteur qui contiendra toutes les positions du plateau
+    dans un ordre aléatoire pour déplacer les métabolites dans un ordre lui aussi aléatoire
+    et éviter qu'ils "s'entassent" sur la partie gauche du plateau.*/
     public static void move_all_metabolite() {
         Vector<Integer> randomcasepicker = new Vector();
         for (int nbdecase = 0; nbdecase < plateau.size(); nbdecase++) {
@@ -250,8 +258,8 @@ public class Plateau {
             for (int i = 1; i <= Metabolite.distance_max; i++) {
                 int possible_col = col + i; //droite
                 int possible_index = row * taille_plateau + possible_col;
-                if (bornee(possible_col)) {
-                    if (!plateau.get(possible_index).get_type().equals(" ")) {
+                if (bornee(possible_col)) { //on regarde si la position n'est pas hors plateau
+                    if (!plateau.get(possible_index).get_type().equals(" ")) { // on regarde si la case est libre sinon on empêche les déplacements qui suivent avec un break.
                         break;
                     }
                     Vector<Integer> possible_coordinate = new Vector();
@@ -321,7 +329,8 @@ public class Plateau {
         }
 
     }
-
+    /*fonction empêchant d'obtenir des coordonées hors du plateau
+    lors du calcul des déplacements possibles pour un métabolite sélectionné*/
     public static boolean bornee(int coord_xy) {
         if (coord_xy < taille_plateau && coord_xy > -1) {
             return true;
