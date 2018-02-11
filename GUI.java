@@ -1,23 +1,19 @@
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.util.*;
-// import java.util.ArrayList;
-// import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-
-//import javax.lang.model.util.SimpleTypeVisitor6;
-import javax.swing.*;
-// import javax.swing.JButton;
-// import javax.swing.JFrame;
-// import javax.swing.JPanel;
-// import javax.swing.border.Border;
-// import javax.swing.JColorChooser;
-
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
   Classe de rendu graphique
@@ -67,8 +63,6 @@ public class GUI {
         if (pieceaposer.get_Player() == 1) {
             b.setBackground(J1);
             b.setOpaque(true);
-            // b.setContentAreaFilled(false);
-            // b.setHorizontalAlignment(SwingConstants.CENTER);
         }
         if (pieceaposer.get_Player() == 2) {
             b.setBackground(J2);
@@ -88,10 +82,6 @@ public class GUI {
         }
         if (type.equals("L")) {
             b.setIcon(lipid);
-        }
-        if (type.equals(" ")) {
-            // b.setText(row + "," + col);
-            // b.setFont(new Font("Arial", Font.PLAIN, 9));
         }
         if (type.equals("E") && pieceaposer.get_color().equals("Rouge")) {
             b.setIcon(enzymeRed);
@@ -118,18 +108,11 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                //   Iterator<Case> cases_selected = Plateau.plateau.iterator();
-                //   while (cases_selected.hasNext()) {
-
-                //   }
-
                 click++;
                 JButton gb = GUI.this.getGridButton(row, col);
                 System.out.println("r" + row + ",c" + col + " " + (b == gb) + " " + (b.equals(gb)));
 
                 if (click == 1) {
-                    //int index = (row * 15 + col);
-
                     clicked = Plateau.plateau.get(index);
                     int joueur = clicked.get_Player();
                     System.out.println("Joueur =" + joueur);
@@ -161,9 +144,6 @@ public class GUI {
                         int old_row = clicked.get_row();
                         int old_col = clicked.get_col();
                         int old_index = (old_row * 15 + old_col);
-                        //int joueur = clicked.get_Player();
-                        //String color = clicked.get_color();
-                        //System.out.println("Joueur =" + joueur);
                         Case vide = new Case(old_row, old_col);
 
                         int target_row = target.get_row();
@@ -171,37 +151,39 @@ public class GUI {
                         int new_index = (target_row * 15 + target_col);
                         String type = Plateau.plateau.get(new_index).get_type();
 
-
-                        if(type.equals("M") && !Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())){ //réduction du nb de métabo nécessaire à la victoire
-                          actual_metabo--;                                                                               //si les joueurs mangent des métabos de la même couleur
-                          System.out.println("Joueur : "+clicked.get_Player()+" Nombre actuels de métabolites sur le terrain (- les métabolites mangés correctement) : "+actual_metabo);
-                        }
-                        if(clicked instanceof Enzyme){
-                            Enzyme clicked2 = (Enzyme) clicked;
-                          
                         if (type.equals("M")
-                                && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
-                            if (clicked.get_Player() == 1) {
-                                scoreJ1++;
-                                if (clicked2.get_nbMetaboCacthed() >= 5) {
-                                    scoreJ1--;
-                                    actual_metabo--;
-                                    System.out.println(
-                                            "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
-                                }
-                            } else if (clicked.get_Player() == 2) {
-                                scoreJ2++;
-                                if (clicked2.get_nbMetaboCacthed() >= 5) {
-                                    scoreJ2--;
-                                    actual_metabo--;
-                                    System.out.println(
-                                            "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
-                                }
-                            }
-                            clicked2.increase_nbMetaboCatched();
-                            int nbMetaboCatched = clicked2.get_nbMetaboCacthed();
-                            System.out.println("Nbmétabo dans cette enzyme : " + nbMetaboCatched);
+                                && !Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) { //réduction du nb de métabo nécessaire à la victoire
+                            actual_metabo--; //si les joueurs mangent des métabos de la même couleur
+                            System.out.println("Joueur : " + clicked.get_Player()
+                                    + " Nombre actuels de métabolites sur le terrain (- les métabolites mangés correctement) : "
+                                    + actual_metabo);
                         }
+                        if (clicked instanceof Enzyme) {
+                            Enzyme clicked2 = (Enzyme) clicked;
+
+                            if (type.equals("M")
+                                    && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
+                                if (clicked.get_Player() == 1) {
+                                    scoreJ1++;
+                                    if (clicked2.get_nbMetaboCacthed() >= 5) {
+                                        scoreJ1--;
+                                        actual_metabo--;
+                                        System.out.println(
+                                                "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                                    }
+                                } else if (clicked.get_Player() == 2) {
+                                    scoreJ2++;
+                                    if (clicked2.get_nbMetaboCacthed() >= 5) {
+                                        scoreJ2--;
+                                        actual_metabo--;
+                                        System.out.println(
+                                                "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                                    }
+                                }
+                                clicked2.increase_nbMetaboCatched();
+                                int nbMetaboCatched = clicked2.get_nbMetaboCacthed();
+                                System.out.println("Nbmétabo dans cette enzyme : " + nbMetaboCatched);
+                            }
                         }
                         clicked.set_x(target_row);
                         clicked.set_y(target_col);
@@ -246,18 +228,17 @@ public class GUI {
         }
     }
 
-    public void TestVictoire(){
-      int scoremax = actual_metabo/2+1;
-      System.out.println("Nombre métabos max pour gagner :"+scoremax);
-      if(scoreJ1==scoremax){
-        System.out.println("Le joueur 1 a gagné la partie !");
-        new Menu();
+    public void TestVictoire() {
+        int scoremax = actual_metabo / 2 + 1;
+        System.out.println("Nombre métabos max pour gagner :" + scoremax);
+        if (scoreJ1 == scoremax) {
+            System.out.println("Le joueur 1 a gagné la partie !");
+            new Menu();
 
-      }
-      else if(scoreJ2==scoremax){
-        System.out.println("Le joueur 1 a gagné la partie !");
-        new Menu();
-      }
+        } else if (scoreJ2 == scoremax) {
+            System.out.println("Le joueur 1 a gagné la partie !");
+            new Menu();
+        }
     }
 
     public JPanel createGridPanel() {
@@ -279,9 +260,9 @@ public class GUI {
         f.getContentPane().removeAll();
         list.clear();
         display();
-        // printboard();
     }
 
+    //Version Terminal
     public void printboard() {
         for (int i = 0; i < Plateau.plateau.size(); i++) {
             String ext_case = Plateau.plateau.get(i).get_type();
@@ -305,7 +286,6 @@ public class GUI {
             font = Font.createFont(Font.TRUETYPE_FONT, GUI.class.getResourceAsStream("ka1.ttf"));
         } catch (Exception e) {
         }
-
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p2 = new JPanel();
@@ -354,8 +334,6 @@ public class GUI {
         p2.add(joueur2);
 
         JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        // sp.setResizeWeight(0.7);
-        //sp.setEnabled(false);
         sp.setDividerSize(10);
 
         sp.add(createGridPanel());
@@ -371,9 +349,8 @@ public class GUI {
         init = false;
     }
 
-
-public static void debut_partie() {
-                Plateau.set_element();
-                new GUI().display();
-            }
+    public static void debut_partie() {
+        Plateau.set_element();
+        new GUI().display();
     }
+}

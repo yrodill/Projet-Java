@@ -1,5 +1,10 @@
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Random;
+import java.util.Vector;
 
 public class Plateau {
     public static Vector<Case> plateau = new Vector<Case>();
@@ -11,11 +16,13 @@ public class Plateau {
     }
 
     public static Vector GeneratedNumbers = new Vector<Vector>();
-    public static int get_nb_metabol(){
-      return nb_metabolite;
+
+    public static int get_nb_metabol() {
+        return nb_metabolite;
     }
+
     public static void set_nb_metabol(int nombre) {
-    	nb_metabolite=nombre;
+        nb_metabolite = nombre;
     }
 
     public static Vector<Integer> RandomPlace() {
@@ -29,7 +36,6 @@ public class Plateau {
         randompoz.addElement(y);
 
         while (GeneratedNumbers.contains(randompoz)) {
-            //  System.out.println(randompoz + "DEJA PRESENT!");
             randompoz.clear();
             x = 4 + randomGenerator.nextInt(7);
             y = randomGenerator.nextInt(taille_plateau);
@@ -38,12 +44,7 @@ public class Plateau {
             randompoz.addElement(y);
         }
 
-        //System.out.println("NUMBER GENERATED" + randompoz.get(0) + " , " + randompoz.get(1));
-        //System.out.println("LIST OF COORDINATES:");
-        //printvector(GeneratedNumbers);
-
         GeneratedNumbers.addElement(randompoz);
-        //System.out.println(randompoz);
         return randompoz;
     }
 
@@ -80,37 +81,27 @@ public class Plateau {
         for (int row = 0; row < taille_plateau; row++) {
             for (int col = 0; col < taille_plateau; col++) {
                 int index = (row * taille_plateau + col);
-                //System.out.println(index);
                 if (row == 0 && (col % 2 == 0)) {
-                    //int joueur = 1;
                     Case enzyme = new Enzyme(row, col, 1, couleursEnzyme.get(pickColor));
-                    //enzyme.set_color(couleursEnzyme.get(pickColor));
                     pickColor++;
-                    //enzyme.set_joueur(joueur);
                     String quelcouleur = enzyme.get_color();
                     plateau.add(index, enzyme);
                 } else if (row == (taille_plateau - 1) && (col % 2 == 0)) {
-                    //int joueur = 2;
                     Case enzyme = new Enzyme(row, col, 2, couleursEnzyme.get(pickColor2));
                     enzyme.set_color(couleursEnzyme.get(pickColor2));
                     pickColor2++;
-                    //enzyme.set_joueur(joueur);
                     plateau.add(index, enzyme);
                 }
 
                 else if ((Arrays.asList(1).contains(row) && Arrays.asList(2, 4, 6, 8, 10, 12).contains(col))
                         || (Arrays.asList(2).contains(row) && Arrays.asList(1, 3, 5, 7, 9, 11, 13).contains(col))
                         || (row == 3 && Arrays.asList(0, 2, 4, 6, 8, 10, 12).contains(col))) {
-                    //int joueur = 1;
                     Case lipid = new Lipid(row, col, 1);
-                    //lipid.set_joueur(joueur);
                     plateau.add(index, lipid);
                 } else if ((Arrays.asList(13).contains(row) && Arrays.asList(2, 4, 6, 8, 10, 12).contains(col))
                         || (Arrays.asList(12).contains(row) && Arrays.asList(1, 3, 5, 7, 9, 11, 13).contains(col))
                         || (row == 11 && Arrays.asList(2, 4, 6, 8, 10, 12, 14).contains(col))) {
-                    //int joueur = 2;
                     Case lipid = new Lipid(row, col, 2);
-                    //lipid.set_joueur(joueur);
                     plateau.add(index, lipid);
                 }
 
@@ -128,9 +119,7 @@ public class Plateau {
             Integer new_row = randomcoord.get(0);
             Integer new_col = randomcoord.get(1);
             int index = new_row * taille_plateau + new_col;
-            //int joueur = 0;
             Case metabolite = new Metabolite(new_row, new_col, 0, couleursMetabolite.get(pickColor3));
-            //metabolite.set_color(couleursMetabolite.get(pickColor3));
             pickColor3++;
             plateau.set(index, metabolite);
         }
@@ -151,7 +140,6 @@ public class Plateau {
             int row = selected.get_row();
             int col = selected.get_col();
             int possible_case = 0;
-            //System.out.println(row + "," + col);
             for (int i = 1; i <= Lipid.distance_max; i++) {
                 if (selected.get_Player() == 1) {
                     possible_case = row + i;
@@ -243,7 +231,7 @@ public class Plateau {
         for (int j = 0; j < randomcasepicker.size(); j++) {
             Case metaboSelected = plateau.get(randomcasepicker.get(j));
             if (metaboSelected instanceof Metabolite) {
-                move_metabolite(metaboSelected);//TESTINGGGGGGGGGGGGGG
+                move_metabolite(metaboSelected);
             }
 
         }
@@ -253,7 +241,6 @@ public class Plateau {
 
         Vector<Vector> possible_move = new Vector();
         Case selected = metaboSelected;
-        //System.out.println(cases_selected.next());
         if (selected instanceof Metabolite) {
 
             int row = selected.get_row();

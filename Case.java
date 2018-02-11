@@ -1,5 +1,4 @@
-import java.io.*;
-import java.util.*;
+import java.util.Vector;
 
 public class Case {
     public Vector Pion_Case = new Vector();
@@ -73,11 +72,6 @@ public class Case {
     public void affiche() {
         System.out.println("X:" + x + ", Y: " + y);
     }
-    // public Case(int coord_x, int coord_y, String type) {
-    //     x = coord_x;
-    //     y = coord_y;
-    //     type="default";
-    // }
 
     public String get_type() {
         return (" ");
@@ -105,6 +99,5 @@ public class Case {
         }
         return false;
     }
-
 
 }
