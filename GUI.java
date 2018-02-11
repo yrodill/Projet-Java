@@ -283,7 +283,7 @@ public class GUI {
     public void display() {
         Font font = new Font("Serif", Font.PLAIN, 20);
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, GUI.class.getResourceAsStream("ka1.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, GUI.class.getResourceAsStream("./font/ka1.ttf"));
         } catch (Exception e) {
         }
 
