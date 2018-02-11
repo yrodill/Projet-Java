@@ -63,13 +63,14 @@ public class Menu {
     	  public Slide(){
     	    JSlider slide = new JSlider();
     	   
-    	    slide.setMaximum(50);
+    	    slide.setMaximum(40);
     	    slide.setMinimum(10);
     	    slide.setValue(40);
     	    slide.setPaintTicks(true);
     	    slide.setPaintLabels(true);
     	    slide.setMinorTickSpacing(10);
     	    slide.setMajorTickSpacing(10);
+    	    slide.setSnapToTicks(true);
     	    slide.addChangeListener(new ChangeListener(){
     	      public void stateChanged(ChangeEvent event){
     	        label.setText("Nombre de Métabolites : " + ((JSlider)event.getSource()).getValue());
