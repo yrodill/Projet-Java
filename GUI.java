@@ -171,13 +171,14 @@ public class GUI {
                         int new_index = (target_row * 15 + target_col);
                         String type = Plateau.plateau.get(new_index).get_type();
 
-                        if(clicked instanceof Enzyme){
-                          Enzyme clicked2 = clicked;
-                        }
+
                         if(type.equals("M") && !Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())){ //réduction du nb de métabo nécessaire à la victoire
                           actual_metabo--;                                                                               //si les joueurs mangent des métabos de la même couleur
                           System.out.println("Joueur : "+clicked.get_Player()+" Nombre actuels de métabolites sur le terrain (- les métabolites mangés correctement) : "+actual_metabo);
                         }
+                        if(clicked instanceof Enzyme){
+                            Enzyme clicked2 = (Enzyme) clicked;
+                          
                         if (type.equals("M")
                                 && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
                             if (clicked.get_Player() == 1) {
@@ -200,6 +201,7 @@ public class GUI {
                             clicked2.increase_nbMetaboCatched();
                             int nbMetaboCatched = clicked2.get_nbMetaboCacthed();
                             System.out.println("Nbmétabo dans cette enzyme : " + nbMetaboCatched);
+                        }
                         }
                         clicked.set_x(target_row);
                         clicked.set_y(target_col);
