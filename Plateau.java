@@ -329,13 +329,4 @@ public class Plateau {
         return false;
     }
 
-    public static void main(String[] args) {
-        set_element();
-        for (int i = 0; i < plateau.size(); i++) {
-            Vector ext_case = plateau.get(i).get_coordinate();
-            String type = plateau.get(i).get_type();
-            System.out.println(ext_case);
-        }
-    }
-
 }

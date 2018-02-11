@@ -46,7 +46,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="GUI" project="Projet-Java" file="/Projet-Java/GUI.java" binary="false" 
+  <class id="6" language="java" name="JEU" project="Projet-Java" file="/Projet-Java/JEU.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="388" width="149" x="42" y="37"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 

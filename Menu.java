@@ -117,7 +117,7 @@ public class Menu {
             jouer.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    GUI.debut_partie();
+                    JEU.debut_partie();
                 }
             });
 

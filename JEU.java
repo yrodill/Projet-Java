@@ -21,7 +21,7 @@ import javax.swing.JSplitPane;
   @version 1
 **/
 
-public class GUI {
+public class JEU {
     private static final int N = 15;
     public static int scoreJ1;
     public static int scoreJ2;
@@ -109,7 +109,7 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
 
                 click++;
-                JButton gb = GUI.this.getGridButton(row, col);
+                JButton gb = JEU.this.getGridButton(row, col);
                 System.out.println("r" + row + ",c" + col + " " + (b == gb) + " " + (b.equals(gb)));
 
                 if (click == 1) {
@@ -283,7 +283,7 @@ public class GUI {
     public void display() {
         Font font = new Font("Serif", Font.PLAIN, 20);
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, GUI.class.getResourceAsStream("./font/ka1.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, JEU.class.getResourceAsStream("./font/ka1.ttf"));
         } catch (Exception e) {
         }
 
@@ -351,6 +351,6 @@ public class GUI {
 
     public static void debut_partie() {
         Plateau.set_element();
-        new GUI().display();
+        new JEU().display();
     }
 }
