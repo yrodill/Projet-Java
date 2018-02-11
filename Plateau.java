@@ -11,11 +11,13 @@ public class Plateau {
     }
 
     public static Vector GeneratedNumbers = new Vector<Vector>();
-
+    public static int get_nb_metabol(){
+      return nb_metabolite;
+    }
     public static void set_nb_metabol(int nombre) {
     	nb_metabolite=nombre;
     }
-    
+
     public static Vector<Integer> RandomPlace() {
         Vector<Integer> randompoz = new Vector();
         randompoz.clear();

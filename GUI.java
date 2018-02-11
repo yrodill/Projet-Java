@@ -29,6 +29,7 @@ public class GUI {
     private static final int N = 15;
     public static int scoreJ1;
     public static int scoreJ2;
+    public static int actual_metabo = Plateau.get_nb_metabol();
     private final List<JButton> list = new ArrayList<JButton>();
     public int click = 0;
     public Case clicked;
@@ -169,12 +170,17 @@ public class GUI {
                         int target_col = target.get_col();
                         int new_index = (target_row * 15 + target_col);
                         String type = Plateau.plateau.get(new_index).get_type();
+                        if(type.equals("M") && !Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())){ //réduction du nb de métabo nécessaire à la victoire
+                          actual_metabo--;                                                                               //si les joueurs mangent des métabos de la même couleur
+                          System.out.println("Joueur : "+clicked.get_Player()+" Nombre actuels de métabolites sur le terrain (- les métabolites mangés correctement) : "+actual_metabo);
+                        }
                         if (type.equals("M")
                                 && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
                             if (clicked.get_Player() == 1) {
                                 scoreJ1++;
                                 if (clicked.get_nbMetaboCacthed() >= 5) {
                                     scoreJ1--;
+                                    actual_metabo--;
                                     System.out.println(
                                             "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
                                 }
@@ -182,6 +188,7 @@ public class GUI {
                                 scoreJ2++;
                                 if (clicked.get_nbMetaboCacthed() >= 5) {
                                     scoreJ2--;
+                                    actual_metabo--;
                                     System.out.println(
                                             "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
                                 }
@@ -234,13 +241,14 @@ public class GUI {
     }
 
     public void TestVictoire(){
-      if(scoreJ1==21){
+      int scoremax = actual_metabo/2+1;
+      System.out.println("Nombre métabos max pour gagner :"+scoremax);
+      if(scoreJ1==scoremax){
         System.out.println("Le joueur 1 a gagné la partie !");
-        f.dispose();
         new Menu();
 
       }
-      else if(scoreJ2==1){
+      else if(scoreJ2==scoremax){
         System.out.println("Le joueur 1 a gagné la partie !");
         new Menu();
       }
