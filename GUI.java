@@ -170,6 +170,10 @@ public class GUI {
                         int target_col = target.get_col();
                         int new_index = (target_row * 15 + target_col);
                         String type = Plateau.plateau.get(new_index).get_type();
+
+                        if(clicked instanceof Enzyme){
+                          Enzyme clicked2 = clicked;
+                        }
                         if(type.equals("M") && !Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())){ //réduction du nb de métabo nécessaire à la victoire
                           actual_metabo--;                                                                               //si les joueurs mangent des métabos de la même couleur
                           System.out.println("Joueur : "+clicked.get_Player()+" Nombre actuels de métabolites sur le terrain (- les métabolites mangés correctement) : "+actual_metabo);
@@ -178,7 +182,7 @@ public class GUI {
                                 && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
                             if (clicked.get_Player() == 1) {
                                 scoreJ1++;
-                                if (clicked.get_nbMetaboCacthed() >= 5) {
+                                if (clicked2.get_nbMetaboCacthed() >= 5) {
                                     scoreJ1--;
                                     actual_metabo--;
                                     System.out.println(
@@ -186,15 +190,15 @@ public class GUI {
                                 }
                             } else if (clicked.get_Player() == 2) {
                                 scoreJ2++;
-                                if (clicked.get_nbMetaboCacthed() >= 5) {
+                                if (clicked2.get_nbMetaboCacthed() >= 5) {
                                     scoreJ2--;
                                     actual_metabo--;
                                     System.out.println(
                                             "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
                                 }
                             }
-                            clicked.increase_nbMetaboCatched();
-                            int nbMetaboCatched = clicked.get_nbMetaboCacthed();
+                            clicked2.increase_nbMetaboCatched();
+                            int nbMetaboCatched = clicked2.get_nbMetaboCacthed();
                             System.out.println("Nbmétabo dans cette enzyme : " + nbMetaboCatched);
                         }
                         clicked.set_x(target_row);

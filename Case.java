@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class Case {
-    private int nbMetaboCatched = 0;
     public Vector Pion_Case = new Vector();
     private int x;
     private int y;
@@ -107,15 +106,5 @@ public class Case {
         return false;
     }
 
-    public int get_nbMetaboCacthed() {
-        return nbMetaboCatched;
-    }
 
-    public void increase_nbMetaboCatched() {
-        nbMetaboCatched++;
-    }
-
-    public void set_nbMetaboCatched(int nbMetaboCatched) {
-        nbMetaboCatched = this.nbMetaboCatched;
-    }
 }
