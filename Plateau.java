@@ -12,6 +12,10 @@ public class Plateau {
 
     public static Vector GeneratedNumbers = new Vector<Vector>();
 
+    public static void set_nb_metabol(int nombre) {
+    	nb_metabolite=nombre;
+    }
+    
     public static Vector<Integer> RandomPlace() {
         Vector<Integer> randompoz = new Vector();
         randompoz.clear();
@@ -62,7 +66,7 @@ public class Plateau {
             couleursEnzyme.add("Rose");
         }
         ArrayList<String> couleursMetabolite = new ArrayList<String>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < (nb_metabolite/10); i++) {
             couleursMetabolite.add("Rouge");
             couleursMetabolite.add("Vert");
             couleursMetabolite.add("Bleu");
