@@ -24,6 +24,7 @@ public class Plateau {
     public static void set_nb_metabol(int nombre) {
         nb_metabolite = nombre;
     }
+
     /*création de coordonnées aléatoires stockées dans un vecteur
     pour positionner les métabolites sur le plateau de jeu.
     La fonction renvoie un vecteur contenant des listes de coordonnées.*/
@@ -50,13 +51,6 @@ public class Plateau {
         return randompoz;
     }
 
-    public static void printvector(Vector vecteur) {
-        Enumeration vEnum = vecteur.elements();
-
-        while (vEnum.hasMoreElements()) {
-            System.out.print(vEnum.nextElement() + " ");
-        }
-    }
     /*fonction permettant de créer les éléments au début d'une partie et de les
     positionner sur le plateau selon les règles décrites dans le sujet.*/
     public static void set_element() {
@@ -137,7 +131,6 @@ public class Plateau {
         return false;
     }
 
-
     public static void move_lipides(Case clicked) {
 
         Case selected = clicked;
@@ -165,56 +158,21 @@ public class Plateau {
     }
 
     public static void move_enzyme(Case clicked) {
-
         Case selected = clicked;
-
         if (selected instanceof Enzyme) {
             List<Integer> move_possible_enzyme = new ArrayList<Integer>();
             int row = selected.get_row();
             int col = selected.get_col();
-            int move, move2, move4, move5, move7, move8;
-            move = -1; //initialisé à -1 pour éviter que la case 0 soit proposée sur un déplacement impossible.
-            move2 = -1;
-            move4 = -1;
-            move5 = -1;
-            move7 = -1;
-            move8 = -1;
-            if (col != 0) {
-                move = row * taille_plateau - 1 + col; //gauche
-                move4 = (row - 1) * taille_plateau + col - 1; //diagonale haut gauche
-                move7 = (row + 1) * taille_plateau + col - 1; // diagonale bas gauche
-            }
-            if (col != 14) {
-                move2 = row * taille_plateau + 1 + col; //droite
-                move5 = (row - 1) * taille_plateau + col + 1; // diagonale haut droite
-                move8 = (row + 1) * taille_plateau + col + 1; //diagonale bas droite
 
-            }
-            int move3 = (row - 1) * taille_plateau + col; //haut
-            int move6 = (row + 1) * taille_plateau + col; // bas
-            if (test_move(move)) {
-                move_possible_enzyme.add(move);
-            }
-            if (test_move(move2)) {
-                move_possible_enzyme.add(move2);
-            }
-            if (test_move(move3)) {
-                move_possible_enzyme.add(move3);
-            }
-            if (test_move(move4)) {
-                move_possible_enzyme.add(move4);
-            }
-            if (test_move(move5)) {
-                move_possible_enzyme.add(move5);
-            }
-            if (test_move(move6)) {
-                move_possible_enzyme.add(move6);
-            }
-            if (test_move(move7)) {
-                move_possible_enzyme.add(move7);
-            }
-            if (test_move(move8)) {
-                move_possible_enzyme.add(move8);
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    int test_row = row + i;
+                    int test_col = col + j;
+                    if (bornee(test_row) && bornee(test_col)) {
+                        int test_index = test_row * taille_plateau + test_col;
+                        move_possible_enzyme.add(test_index);
+                    }
+                }
             }
 
             for (int j = 0; j < move_possible_enzyme.size(); j++) {
@@ -227,6 +185,7 @@ public class Plateau {
             }
         }
     }
+
     /*Fonction permettant de créer un vecteur qui contiendra toutes les positions du plateau
     dans un ordre aléatoire pour déplacer les métabolites dans un ordre lui aussi aléatoire
     et éviter qu'ils "s'entassent" sur la partie gauche du plateau.*/
@@ -309,9 +268,6 @@ public class Plateau {
                 }
             }
             if (!possible_move.isEmpty()) {
-                System.out.println("\n------------------------------\n");
-                System.out.println("\nrow: " + row + " col: " + col + "\n");
-                printvector(possible_move);
                 Collections.shuffle(possible_move);
                 Random r = new Random();
                 int randomindex = r.nextInt(possible_move.size());
@@ -319,7 +275,6 @@ public class Plateau {
                 Integer row_choisie = coord_choisie.get(0);
                 Integer col_choisie = coord_choisie.get(1);
                 Integer index_choisie = row_choisie * taille_plateau + col_choisie;
-                System.out.println("\nrow_choosed: " + row_choisie + " col_choosed: " + col_choisie + "\n");
                 selected.set_x(row_choisie);
                 selected.set_y(col_choisie);
                 Case vide = new Case(row, col);
@@ -329,6 +284,7 @@ public class Plateau {
         }
 
     }
+
     /*fonction empêchant d'obtenir des coordonées hors du plateau
     lors du calcul des déplacements possibles pour un métabolite sélectionné*/
     public static boolean bornee(int coord_xy) {

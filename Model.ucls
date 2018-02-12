@@ -3,8 +3,8 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="Plateau" project="Projet-Java" file="/Projet-Java/Plateau.java" binary="false" 
     corner="BOTTOM_LEFT">    
-    <position height="82" width="158" x="231" y="37"/>    
-    <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
+    <position height="162" width="158" x="121" y="37"/>    
+    <display autosize="false" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="Case" project="Projet-Java" file="/Projet-Java/Case.java" binary="false" 
     corner="BOTTOM_LEFT">    
-    <position height="172" width="131" x="222" y="465"/>    
+    <position height="154" width="121" x="167" y="483"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="Enzyme" project="Projet-Java" file="/Projet-Java/Enzyme.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="46" width="108" x="338" y="677"/>    
+    <position height="64" width="131" x="189" y="677"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="Lipid" project="Projet-Java" file="/Projet-Java/Lipid.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="46" width="108" x="42" y="677"/>    
+    <position height="46" width="108" x="41" y="677"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,71 +39,67 @@
   </class>  
   <class id="5" language="java" name="Metabolite" project="Projet-Java" file="/Projet-Java/Metabolite.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="46" width="108" x="190" y="677"/>    
+    <position height="46" width="108" x="360" y="677"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="JEU" project="Projet-Java" file="/Projet-Java/JEU.java" binary="false" 
+  <class id="6" language="java" name="Menu" project="Projet-Java" file="/Projet-Java/Menu.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="388" width="149" x="42" y="37"/>    
+    <position height="82" width="140" x="328" y="483"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="Menu" project="Projet-Java" file="/Projet-Java/Menu.java" binary="false" 
+  <class id="7" language="java" name="JEU" project="Projet-Java" file="/Projet-Java/JEU.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="141" width="140" x="42" y="465"/>    
+    <position height="406" width="149" x="319" y="37"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <association id="8">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="9" name="plateau">        
-        <position height="17" width="45" x="300" y="401"/>      
-      </attribute>      
-      <multiplicity id="10" minimum="0" maximum="2147483647"/>    
+  <generalization id="8">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="9">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <dependency id="10">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="12">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="13" name="clicked"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="11">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <dependency id="12">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <generalization id="13">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="14">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="15" name="clicked"/>      
-      <multiplicity id="16" minimum="0" maximum="1">        
-        <position height="15" width="23" x="168" y="430"/>      
+  <association id="15">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="16" name="plateau">        
+        <position height="17" width="45" x="300" y="401"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="17">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
   <classifier-display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

@@ -113,108 +113,106 @@ public class JEU {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                clic_move(row, col, index, b);
 
-                click++;
-                JButton gb = JEU.this.getGridButton(row, col);
-                System.out.println("r" + row + ",c" + col + " " + (b == gb) + " " + (b.equals(gb)));
-
-                if (click == 1) {
-                    clicked = Plateau.plateau.get(index);
-                    int joueur = clicked.get_Player();
-                    System.out.println("Joueur =" + joueur);
-                    clicked.highlight(true);
-
-                    //VERIFICATION DU JOUEUR !
-                    if (joueur != etape_tour) {
-                        System.out.println("Ce pion n'est pas à vous !");
-                        clicked.highlight(false);
-                        click = 0;
-                    }
-
-                    else if (clicked.get_type().equals("L")) {
-                        Plateau.move_lipides(clicked);
-                    } else if (clicked.get_type().equals("E")) {
-                        Plateau.move_enzyme(clicked);
-                    }
-                    updatedisplay();
-                }
-                if (click == 2) {
-                    Case target = Plateau.plateau.get(index);
-                    System.out.println("Atteignable: " + target.is_reachable());
-
-                    if (target.is_thesameposition(clicked)) {
-                        clicked.highlight(false);
-                        unreachable();
-                        click = 0;
-                    } else if (target.is_reachable()) {
-                        int old_row = clicked.get_row();
-                        int old_col = clicked.get_col();
-                        int old_index = (old_row * 15 + old_col);
-                        Case vide = new Case(old_row, old_col);
-
-                        int target_row = target.get_row();
-                        int target_col = target.get_col();
-                        int new_index = (target_row * 15 + target_col);
-                        String type = Plateau.plateau.get(new_index).get_type();
-
-                        if (type.equals("M")
-                                && !Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) { //réduction du nb de métabo nécessaire à la victoire
-                            actual_metabo--; //si les joueurs mangent des métabos de la même couleur
-                            System.out.println("Joueur : " + clicked.get_Player()
-                                    + " Nombre actuels de métabolites sur le terrain (- les métabolites mangés correctement) : "
-                                    + actual_metabo);
-                        }
-                        if (clicked instanceof Enzyme) {
-                            Enzyme clicked2 = (Enzyme) clicked;
-                            /*modification des scores lorsque les joueurs "mangent" les métabolites*/
-                            if (type.equals("M")
-                                    && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
-                                if (clicked.get_Player() == 1) {
-                                    scoreJ1++;
-                                    if (clicked2.get_nbMetaboCacthed() >= 5) {
-                                        scoreJ1--;
-                                        actual_metabo--;
-                                        System.out.println(
-                                                "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
-                                    }
-                                } else if (clicked.get_Player() == 2) {
-                                    scoreJ2++;
-                                    if (clicked2.get_nbMetaboCacthed() >= 5) {
-                                        scoreJ2--;
-                                        actual_metabo--;
-                                        System.out.println(
-                                                "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
-                                    }
-                                }
-                                if(clicked2.get_nbMetaboCacthed() <5){ //le nombre de métabolites capturés par l'enzyme n'augmente plus lorsque qu'il y en a déjà 5.
-                                  clicked2.increase_nbMetaboCatched();
-                                }
-                                int nbMetaboCatched = clicked2.get_nbMetaboCacthed();
-                                System.out.println("Nbmétabo dans cette enzyme : " + nbMetaboCatched);
-                            }
-                        }
-                        clicked.set_x(target_row);
-                        clicked.set_y(target_col);
-                        Plateau.plateau.set(new_index, clicked);
-                        Plateau.plateau.set(old_index, vide);
-
-                        clicked.highlight(false);
-                        unreachable();
-                        click = 0;
-                        TestVictoire();
-                        changer_etape(); //CHANGE LE JOUEUR
-
-                    } else {
-                        System.out.println("Case inaccessible!");
-                        clicked.highlight(false);
-                        unreachable();
-                        click = 0;
-                    }
-                    updatedisplay();
-                }
             }
         });
         return b;
+    }
+
+    public void clic_move(int row, int col, int index, JButton b){
+        click++;
+        JButton gb = JEU.this.getGridButton(row, col);
+        
+        if (click == 1) {
+            clicked = Plateau.plateau.get(index);
+            int joueur = clicked.get_Player();
+            clicked.highlight(true);
+
+            //VERIFICATION DU JOUEUR !
+            if (joueur != etape_tour) {
+                clicked.highlight(false);
+                click = 0;
+            }
+
+            else if (clicked.get_type().equals("L")) {
+                Plateau.move_lipides(clicked);
+            } else if (clicked.get_type().equals("E")) {
+                Plateau.move_enzyme(clicked);
+            }
+            updatedisplay();
+        }
+        if (click == 2) {
+            Case target = Plateau.plateau.get(index);
+            if (target.is_thesameposition(clicked)) {
+                clicked.highlight(false);
+                unreachable();
+                click = 0;
+            } else if (target.is_reachable()) {
+                int old_row = clicked.get_row();
+                int old_col = clicked.get_col();
+                int old_index = (old_row * 15 + old_col);
+                Case vide = new Case(old_row, old_col);
+
+                int target_row = target.get_row();
+                int target_col = target.get_col();
+                int new_index = (target_row * 15 + target_col);
+                String type = Plateau.plateau.get(new_index).get_type();
+
+                if (type.equals("M")
+                        && !Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) { //réduction du nb de métabo nécessaire à la victoire
+                    actual_metabo--; //si les joueurs mangent des métabos de la même couleur
+                    System.out.println("Joueur : " + clicked.get_Player()
+                            + " Nombre actuels de métabolites sur le terrain (- les métabolites mangés correctement) : "
+                            + actual_metabo);
+                }
+                if (clicked instanceof Enzyme) {
+                    Enzyme clicked2 = (Enzyme) clicked;
+                    /*modification des scores lorsque les joueurs "mangent" les métabolites*/
+                    if (type.equals("M")
+                            && Plateau.plateau.get(new_index).get_color().equals(clicked.get_color())) {
+                        if (clicked.get_Player() == 1) {
+                            scoreJ1++;
+                            if (clicked2.get_nbMetaboCacthed() >= 5) {
+                                scoreJ1--;
+                                actual_metabo--;
+                                System.out.println(
+                                        "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                            }
+                        } else if (clicked.get_Player() == 2) {
+                            scoreJ2++;
+                            if (clicked2.get_nbMetaboCacthed() >= 5) {
+                                scoreJ2--;
+                                actual_metabo--;
+                                System.out.println(
+                                        "Votre enzyme est pleine, le métabolite est détruit, votre score est inchangé !");
+                            }
+                        }
+                        if(clicked2.get_nbMetaboCacthed() <5){ //le nombre de métabolites capturés par l'enzyme n'augmente plus lorsque qu'il y en a déjà 5.
+                          clicked2.increase_nbMetaboCatched();
+                        }
+                        int nbMetaboCatched = clicked2.get_nbMetaboCacthed();
+                        System.out.println("Nbmétabo dans cette enzyme : " + nbMetaboCatched);
+                    }
+                }
+                clicked.set_x(target_row);
+                clicked.set_y(target_col);
+                Plateau.plateau.set(new_index, clicked);
+                Plateau.plateau.set(old_index, vide);
+
+                clicked.highlight(false);
+                unreachable();
+                click = 0;
+                TestVictoire();
+                changer_etape(); //CHANGE LE JOUEUR
+
+            } else {
+                clicked.highlight(false);
+                unreachable();
+                click = 0;
+            }
+            updatedisplay();
+        }
     }
 
     public void unreachable() {
