@@ -3,103 +3,113 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="Plateau" project="Projet-Java" file="/Projet-Java/Plateau.java" binary="false" 
     corner="BOTTOM_LEFT">    
-    <position height="162" width="158" x="121" y="37"/>    
+    <position height="130" width="163" x="106" y="70"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="Piece" project="Projet-Java" file="/Projet-Java/Piece.java" binary="false" 
-    corner="BOTTOM_LEFT">    
-    <position height="154" width="121" x="167" y="483"/>    
-    <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="Enzyme" project="Projet-Java" file="/Projet-Java/Enzyme.java" binary="false" 
+  <class id="2" language="java" name="Enzyme" project="Projet-Java" file="/Projet-Java/Enzyme.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="64" width="131" x="189" y="677"/>    
+    <position height="-1" width="-1" x="341" y="634"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="Lipid" project="Projet-Java" file="/Projet-Java/Lipid.java" binary="false" 
+  <class id="3" language="java" name="Lipid" project="Projet-Java" file="/Projet-Java/Lipid.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="46" width="108" x="41" y="677"/>    
+    <position height="-1" width="-1" x="94" y="627"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="Metabolite" project="Projet-Java" file="/Projet-Java/Metabolite.java" 
+  <class id="4" language="java" name="Metabolite" project="Projet-Java" file="/Projet-Java/Metabolite.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="46" width="108" x="360" y="677"/>    
+    <position height="-1" width="-1" x="209" y="627"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="Menu" project="Projet-Java" file="/Projet-Java/Menu.java" binary="false" 
+  <class id="5" language="java" name="Menu" project="Projet-Java" file="/Projet-Java/Menu.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="82" width="140" x="328" y="483"/>    
+    <position height="-1" width="-1" x="453" y="522"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="JEU" project="Projet-Java" file="/Projet-Java/JEU.java" binary="false" 
+  <class id="6" language="java" name="JEU" project="Projet-Java" file="/Projet-Java/JEU.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="406" width="149" x="319" y="37"/>    
+    <position height="406" width="149" x="326" y="37"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <generalization id="8">    
-    <end type="SOURCE" refId="5"/>    
+  <class id="7" language="java" name="Piece" project="Projet-Java" file="/Projet-Java/Piece.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="268" width="196" x="96" y="283"/>    
+    <display autosize="false" stereotype="false" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="8">    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <generalization id="9">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <dependency id="10">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
   </dependency>  
-  <generalization id="11">    
+  <generalization id="9">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="7"/>  
   </generalization>  
-  <association id="12">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="13" name="clicked"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="15">    
+  <association id="10">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="16" name="plateau">        
-        <position height="17" width="45" x="300" y="401"/>      
+      <attribute id="11" name="plateau">        
+        <position height="17" width="45" x="128" y="261"/>      
       </attribute>      
-      <multiplicity id="17" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="12" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="196" y="264"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="13">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="14" name="clicked">        
+        <position height="17" width="41" x="128" y="239"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
