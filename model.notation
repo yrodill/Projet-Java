@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
-  <notation:Diagram xmi:id="_yKW7sA2wEeir_d28XnyGFg" type="UseCase" name="Use Case Diagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_yKW7sA2wEeir_d28XnyGFg" type="UsePiece" name="Use Piece Diagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_1JcjAA2wEeir_d28XnyGFg" type="Package_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_1JeYMA2wEeir_d28XnyGFg" type="Package_NameLabel"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_1JeYMQ2wEeir_d28XnyGFg" type="Package_PackagedElementCompartment">
@@ -12,7 +12,7 @@
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_yKW7sQ2wEeir_d28XnyGFg" name="diagram_compatibility_version" stringValue="1.3.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_yKW7sg2wEeir_d28XnyGFg"/>
-    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_yKW7sw2wEeir_d28XnyGFg" diagramKindId="org.eclipse.papyrus.uml.diagram.useCase">
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_yKW7sw2wEeir_d28XnyGFg" diagramKindId="org.eclipse.papyrus.uml.diagram.usePiece">
       <owner xmi:type="uml:Model" href="model.uml#_yJMeEA2wEeir_d28XnyGFg"/>
     </styles>
     <element xmi:type="uml:Model" href="model.uml#_yJMeEA2wEeir_d28XnyGFg"/>
@@ -33,7 +33,7 @@
     </styles>
     <element xmi:type="uml:Model" href="model.uml#_yJMeEA2wEeir_d28XnyGFg"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_4pwBAA2wEeir_d28XnyGFg" type="UseCase" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_4pwBAA2wEeir_d28XnyGFg" type="UsePiece" measurementUnit="Pixel">
     <styles xmi:type="notation:StringValueStyle" xmi:id="_4pwBAQ2wEeir_d28XnyGFg" name="diagram_compatibility_version" stringValue="1.3.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_4pwBAg2wEeir_d28XnyGFg"/>
     <element xmi:type="uml:Package" href="model.uml#_1JV1UA2wEeir_d28XnyGFg"/>

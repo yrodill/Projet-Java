@@ -1,4 +1,4 @@
-public class Enzyme extends Case{
+public class Enzyme extends Piece{
     public static int distance_max = 1;
     private int nbMetaboCatched = 0;
 

@@ -1,4 +1,4 @@
-public class Metabolite extends Case {
+public class Metabolite extends Piece {
     public static int distance_max = 1;
 
     public Metabolite(int coord_x, int coord_y, int joueur, String color) {

@@ -29,7 +29,7 @@ public class JEU {
     public static int actual_metabo = Plateau.get_nb_metabol();
     private final List<JButton> list = new ArrayList<JButton>();
     public int click = 0;
-    public Case clicked;
+    public Piece clicked;
     public ImageIcon mitoRed = new ImageIcon("./img/mito_red.png");
     public ImageIcon mitoBlue = new ImageIcon("./img/mito_blue.png");
     public ImageIcon mitoGreen = new ImageIcon("./img/mito_green.png");
@@ -51,14 +51,14 @@ public class JEU {
         return list.get(index);
     }
 
-    /*fonction permettant de créer les boutons (cases du plateau) et d'y assigner les images
+    /*fonction permettant de créer les boutons (pieces du plateau) et d'y assigner les images
     en fonction de la pièce qui est posée sur la case.
     la fonction contient aussi les inétractions possibles avec les boutons créés.
     Elle renvoie le bouton créé.*/
     private JButton createGridButton(final int row, final int col) {
         final JButton b;
         int index = (row * 15 + col);
-        Case pieceaposer = Plateau.plateau.get(index);
+        Piece pieceaposer = Plateau.plateau.get(index);
         String type = pieceaposer.get_type();
         Boolean highlighted = pieceaposer.is_highlighted();
         Boolean reachable = pieceaposer.is_reachable();
@@ -104,7 +104,7 @@ public class JEU {
             b.setBackground(Color.GREEN);
             b.setOpaque(true);
         }
-        if (reachable) { //affichage des cases atteignables par la pièce
+        if (reachable) { //affichage des pieces atteignables par la pièce
             b.setBackground(Color.ORANGE);
             b.setOpaque(true);
         }
@@ -143,7 +143,7 @@ public class JEU {
             updatedisplay();
         }
         if (click == 2) {
-            Case target = Plateau.plateau.get(index);
+            Piece target = Plateau.plateau.get(index);
             if (target.is_thesameposition(clicked)) {
                 clicked.highlight(false);
                 unreachable();
@@ -152,7 +152,7 @@ public class JEU {
                 int old_row = clicked.get_row();
                 int old_col = clicked.get_col();
                 int old_index = (old_row * 15 + old_col);
-                Case vide = new Case(old_row, old_col);
+                Piece vide = new Piece(old_row, old_col);
 
                 int target_row = target.get_row();
                 int target_col = target.get_col();

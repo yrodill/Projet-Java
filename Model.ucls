@@ -10,7 +10,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="Case" project="Projet-Java" file="/Projet-Java/Case.java" binary="false" 
+  <class id="2" language="java" name="Piece" project="Projet-Java" file="/Projet-Java/Piece.java" binary="false" 
     corner="BOTTOM_LEFT">    
     <position height="154" width="121" x="167" y="483"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 

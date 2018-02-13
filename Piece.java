@@ -1,7 +1,7 @@
 import java.util.Vector;
 
-public class Case {
-    public Vector Pion_Case = new Vector();
+public class Piece {
+    public Vector Pion_Piece = new Vector();
     private int x;
     private int y;
     private int player;
@@ -48,21 +48,21 @@ public class Case {
         return coordinate;
     }
 
-    public Case(int row, int col, int joueur, String color) {
+    public Piece(int row, int col, int joueur, String color) {
         x = row;
         y = col;
         player = joueur;
         couleur = color;
     }
 
-    public Case(int row, int col, int joueur) {
+    public Piece(int row, int col, int joueur) {
         x = row;
         y = col;
         player = joueur;
         couleur = "";
     }
 
-    public Case(int row, int col) {
+    public Piece(int row, int col) {
         x = row;
         y = col;
         player = 0;
@@ -93,7 +93,7 @@ public class Case {
         return reachable;
     }
 
-    public boolean is_thesameposition(Case tested) {
+    public boolean is_thesameposition(Piece tested) {
         if (tested.get_row() == x && tested.get_col() == y) {
             return true;
         }
